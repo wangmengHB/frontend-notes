@@ -32,16 +32,16 @@ lodash, jquery, ...
 现代的前端开发对于开发者的要求越来越高，前端开发工作需要掌握的技能越来越多了.
 
 单单只是从Web开发方面，对于前端开发者的要求有：
-*工程配置：webpack, gulp, rollup, babel
-*开发语言: javascript, ES6, ES7, ES8, typescript, ...
-*样式语言: css, less, sass, css in module, stylus, postcss, ...
-*基础类库: moment
-*数据结构：immutablejs
-*设计模式：Redux, vuex, thunk, middleware, mixin
-*路由管理：React-Router
-*框架: React, Vue, Angular
-*单元测试： Jasmine, Karma
-*代码质控: ESLint
+* 工程配置：webpack, gulp, rollup, babel
+* 开发语言: javascript, ES6, ES7, ES8, typescript, ...
+* 样式语言: css, less, sass, css in module, stylus, postcss, ...
+* 基础类库: moment
+* 数据结构：immutablejs
+* 设计模式：Redux, vuex, thunk, middleware, mixin
+* 路由管理：React-Router
+* 框架: React, Vue, Angular
+* 单元测试： Jasmine, Karma
+* 代码质控: ESLint
 
 特定场景的技能: WebGL, 地图, WebRTC, SVG, Canvas, webfont, ...
 
@@ -66,35 +66,35 @@ Android和IOS端，对于前端开发者的要求有：
 
 1. 工程配置技术： webpack, babel, gulp, rollup
 2. Javascript基础：
-    *Closure和prototype原理 
-    *ES6
-    *ES7, ES8
-    *typescript
+    * Closure和prototype原理 
+    * ES6
+    * ES7, ES8
+    * typescript
 3. css基础: 基本布局, sass, postcss
 4. 数据结构和函数式编程: immutableJS
 5. React技术栈:
-    *React基础 
-    *Component, PureComponent, function Component
-    *Redux, thunk, immutable 单向数据流
-    *React-Router
+    * React基础 
+    * Component, PureComponent, function Component
+    * Redux, thunk, immutable 单向数据流
+    * React-Router
 6. 单元测试和ESLint
 7. 图形相关： SVG, WebGL, Canvas, 地图
 8. Web应用和外壳的桥接：
-    *与C++代码的交互：CEF
-    *与IOS代码的交互: JavascriptBridge
+    * 与C++代码的交互：CEF
+    * 与IOS代码的交互: JavascriptBridge
 9. 前端开源库的源码解析和欣赏:
-    *jquery
-    *lodash
-    *redux
-    *redux-thunk
-    *react-router
-    *react-redux
+    * jquery
+    * lodash
+    * redux
+    * redux-thunk
+    * react-router
+    * react-redux
 
 未完待续...
 本文会持续更新.
 
 ***
-####版权许可：
+#### 版权许可：
 本文采用"保持署名--非商用"创意共享4.0许可证.
 只要保持原作者署名和非商用, 您可以自由地阅读,分享和修改本文.
 详细的法律条文请参见[创意共享](https://creativecommons.org/licenses/by-nc/4.0/)网站.
