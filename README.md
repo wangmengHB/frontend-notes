@@ -51,7 +51,7 @@ PC端开发，对于前端开发者的要求有：
 
 Android和IOS端，对于前端开发者的要求有：
 *开发语言: Java, Cotlin, Objective-C, Swift,
-*框架: Javascript Bridge
+*框架: JavascriptBridge
 *移动特性: liteSQL, ...
 
 还有，server端渲染技术和nodeJS.
