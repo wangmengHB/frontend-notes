@@ -46,13 +46,13 @@ lodash, jquery, ...
 特定场景的技能: WebGL, 地图, WebRTC, SVG, Canvas, webfont, ...
 
 PC端开发，对于前端开发者的要求有：
-*开发语言：c++, c#, java
-*框架: CEF(Chronium Embbeded Framework)
+* 开发语言：c++, c#, java
+* 框架: CEF(Chronium Embbeded Framework)
 
 Android和IOS端，对于前端开发者的要求有：
-*开发语言: Java, Cotlin, Objective-C, Swift,
-*框架: JavascriptBridge
-*移动特性: liteSQL, ...
+* 开发语言: Java, Cotlin, Objective-C, Swift,
+* 框架: JavascriptBridge
+* 移动特性: liteSQL, ...
 
 还有，server端渲染技术和nodeJS.
 
