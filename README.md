@@ -88,7 +88,7 @@ Android和IOS端,对于前端开发者的要求有:
     * Component, PureComponent, function Component
     * Redux, thunk, immutable 单向数据流
     * React-Router
-6. Vue和angular框架
+6. 其他前端框架的比较: ExtJs, knockoutjs, Angular, Vue
 7. 单元测试和ESLint
 8. 图形相关: SVG, WebGL, Canvas, 地图
 9. Web应用和外壳的桥接:
