@@ -168,7 +168,7 @@ subscribe接口返回一个unsubscribe函数，执行以后，将该次注册的
 在store创建之前，执行了一次 dispatch({ type: ActionTypes.INIT }), 这个过程的意思是创建初始化的 state, 因为各个子reducer都被执行了一遍，所以各个子reducer的初始化state都会被汇总到总的state上. 这也就是没有必要设置总的preloadedState的原因.
 
 
-#### 其他两个不重要的接口
+##### 其他两个不重要的接口
 
 ```js
 
@@ -210,7 +210,27 @@ subscribe接口返回一个unsubscribe函数，执行以后，将该次注册的
 }
 
 ```
-1. observable接口是挂在Symbol.observable属性下，不太确定是否是给用户使用的.
+1. observable接口是挂在Symbol.observable属性下，意图就是不希望用户使用.
 2. observable函数返回的对象，是一个对象具有subscribe方法，而该subscribe方法的输入对象必需具有next方法，符合这个条件，也就是生成器函数返回的迭代器.
 
+以下是代码是Symbol-observable的源码，解释$$observable到底是什么.
+```js
+export default function symbolObservablePonyfill(root) {
+	var result;
+	var Symbol = root.Symbol;
 
+	if (typeof Symbol === 'function') {
+		if (Symbol.observable) {
+			result = Symbol.observable;
+		} else {
+			result = Symbol('observable');
+			Symbol.observable = result;
+		}
+	} else {
+		result = '@@observable';
+	}
+
+	return result;
+};
+
+```
