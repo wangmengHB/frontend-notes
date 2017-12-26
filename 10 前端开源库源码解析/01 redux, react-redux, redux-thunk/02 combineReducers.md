@@ -107,14 +107,10 @@ function combination(state = {}, action) {
 ```js
 const previousStateForKey = state[key]
 const nextStateForKey = reducer(previousStateForKey, action)
-if (typeof nextStateForKey === 'undefined') {
-const errorMessage = getUndefinedStateErrorMessage(key, action)
-throw new Error(errorMessage)
-}
 nextState[key] = nextStateForKey
 hasChanged = hasChanged || nextStateForKey !== previousStateForKey
-
 ```
+在没有全局初始state的情况下，第一次执行时，previousStateForKey是undefined, reducer函数采用的它自己的默认state.
 
 
 
