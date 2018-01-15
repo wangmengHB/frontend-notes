@@ -1,0 +1,158 @@
+.redbtn{
+	margin-top:6px;
+}
+.mui-pull-bottom-tips,.mui-table-view{
+	background-color:#fff;
+}
+
+.mui-input-row input {
+    width: 60% !important;
+    padding: 0;
+    margin: 0;
+    height: auto;
+    line-height: initial;
+    font-size: 14px;
+    margin-bottom: 0;
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.mui-input-row label{
+	    width: 40%;
+        padding: 0;
+    	margin: 0;
+}
+.mui-table-view-cell {
+    font-size: 14px;
+}
+.bank_title {
+    margin: 15px 15px 10px;
+    color: #6d6d72;
+    font-size: 15px;
+}
+
+
+.bind-tel .add-product {
+ 	max-width: 640px;
+    width: 80%;
+    height: 300px;
+    background: #fff;
+    border-radius: 5px;
+    position: fixed;
+    top: 50%;
+    left: 10%;
+    z-index: 9999;
+    margin-top: -150px;
+    display: none;
+}
+.bind-tel .add-product-tit-w {
+    height: 40px;
+    width: 100%;
+    line-height: 40px;
+    border-bottom: 1px solid #c8c7cc;
+}
+.bind-tel .add-product-tit-w .add-product-tit {
+    padding-left: 20px;
+    font-size: 14px;
+   	text-align:left;
+}
+.bind-tel  .add-product .bind-tel-colse{
+	margin-right:20px;
+}
+.bind-tel {
+   
+    position: fixed;
+    z-index: 998;
+    top: 44px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.3);
+}
+.bind-tel .list-h{
+    width: 100%;
+    padding: 0 15px;
+}
+.bind-tel .list-h div{
+	width: 100%;
+	overflow: hidden;
+}
+.bind-tel .list-h  .tips{
+    text-align: center;
+    color: #f23030;
+    font-size: 10px;
+    padding: 15px 0;
+}
+.bind-tel .input-row{
+	font-size:12px;
+	margin-bottom: 10px;
+}
+.bind-tel .input-row label{
+    display: block;
+    width: 22%;
+    margin-left: 3%;
+    float: left;
+}
+.bind-tel .input-row input{
+	float: left;
+    width: 40%;
+    line-height: 21px;
+    height: 30px;
+    margin-bottom: 10px;
+    padding: 10px 10px;
+    -webkit-user-select: text;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 0px;
+    outline: 0;
+    background-color: #fff;
+    -webkit-appearance: none;
+    font-size:12px;
+}
+.bind-tel .input-row .text-body{
+	float: left;
+    width: 42%;
+    line-height: 21px;
+    height: 21px;
+    margin-bottom: 10px;
+    padding: 0 0 0 0px;
+    font-size: 14px;
+    border: 0;
+}
+.bind-tel .input-row .tel-code{
+    margin-left: 0px;
+    width: 36%;
+    margin-right: 10%;
+}
+.bind-tel .input-row  .tip-btn{
+    width: 29%;
+    font-size: 10px;
+    color: #007aff;
+    text-decoration: underline;
+    text-align: right;
+}
+.bind-tel .input-row  .border-btn{
+	width: 25%;
+    font-family: 'Helvetica Neue',Helvetica,sans-serif;
+    line-height: 1.1;
+    padding: 5px 0;
+    font-size: 10px;
+    color: #f23030;
+    text-align: center;
+    border: 1px solid #f23030;
+    margin-top: 7px;
+}
+.bind-tel .input-row .submit-btn{
+	width: 70%;
+    margin-left: 15%;
+    padding: 8px 0;
+    background: #f23030;
+    color: #fff;
+    
+}
+.input-tip-btn {
+    font-size: 10px;
+    color: #ccc;
+}
+

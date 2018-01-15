@@ -1,0 +1,15 @@
+<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 80 80">
+	<circle cx="16" cy="16" r="15" stroke="#fff" stroke-width="6" fill="none" />
+	<polyline points="2,11 2,77" style="stroke: rgb(186 186 186); stroke-width: 5; fill: none;" />
+</svg>
+<!--     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs>
+        <symbol viewBox="0 0 32 32" id="close">
+          <g fill-rule="evenodd">
+            <circle cx="16" cy="16" r="15" stroke="#fff" stroke-width="0.6" fill="none" />
+            <line x1="7" y1="7" x2="25" y2="25" style="stroke:#fff;stroke-width:0.8" />
+            <line x1="7" y1="25" x2="25" y2="7" style="stroke:#fff;stroke-width:0.8" />
+          </g>
+        </symbol>
+      </defs>
+    </svg> -->
