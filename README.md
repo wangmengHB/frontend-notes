@@ -88,20 +88,24 @@ Android和IOS端,对于前端开发者的要求有:
     * Component, PureComponent, function Component
     * Redux, thunk, immutable 单向数据流
     * React-Router
-6. 其他前端框架的比较: ExtJs, knockoutjs, Angular, Vue
-7. 单元测试和ESLint
-8. 图形相关: SVG, WebGL, Canvas, 地图
-9. Web应用和外壳的桥接:
+6. Vue专题
+7. 移动端解决方案
+    * PhoneGap
+    * React Native
+8. 桌面端解决方案：Electron
+9. 单元测试和ESLint
+10. 图形相关: SVG, WebGL, Canvas, 地图
+11. Web应用和外壳的桥接:
     * 与C++代码的交互:CEF
     * 与IOS代码的交互: JavascriptBridge
-10. 前端开源库的源码解析:
+12. 前端开源库的源码解析:
     * jquery
     * lodash
     * redux
     * redux-thunk
     * react-router
     * react-redux
-11. 工程实践总结
+13. 工程实践总结
 
 
 未完待续...
