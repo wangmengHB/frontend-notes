@@ -1,0 +1,19 @@
+	p{
+		padding: 0 10px;
+	}
+	.about-center{
+		text-align:center;
+	}
+	.about-content{
+		 text-indent:28px;
+	}
+	.about-title{margin-bottom: 0;margin-top:20px;}
+	.about-title img{
+		display: inline-block;
+		 width: 100%;
+	}
+	.about-tit{padding-top: 20px;font-size:18px;}
+	.mui-content .minTitle{
+	font-size:16px;
+    text-indent: 0;
+	}
