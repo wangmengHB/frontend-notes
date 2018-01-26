@@ -1,0 +1,2 @@
+export const ENABLE_ECARD = 'ENABLE_ECARD';
+export const DISABLE_ECARD = 'DISABLE_ECARD';
