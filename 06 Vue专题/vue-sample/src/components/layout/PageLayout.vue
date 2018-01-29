@@ -74,7 +74,7 @@
         user : window.localStorage.getItem('user'),
         menuList:[
             {routeName:'ecardlist',label:'注册企业名片',icon:'el-icon-setting'},
-            {routeName:'accountlist',label:'注册用户',icon:'el-icon-share'},
+            {routeName:'accountlist',label:'注册用户',icon:'el-icon-service'},
             {routeName:'templatemgmt',label:'企业名片模板',icon:'el-icon-upload'},
         ],
         user_icon_style:{},
@@ -219,7 +219,7 @@
     top: 0;
     z-index:9; 
     .user_icon{
-        background: $base_bg;
+        // background: $base_bg;
         height:50px;
     }
     .iconfont{
@@ -265,6 +265,7 @@
   .main .content{
     width: 100%;
     height: calc(100% - #{$header_height});
+    box-shadow:0 1px 5px #ccc;
   }
 
   .main .content .catalog{
@@ -272,7 +273,7 @@
     height: 100%;
     float: left;
     background-color: $base_bg;
-    box-shadow:0 0px 5px #ccc;
+    box-shadow:0 1px 5px #ccc;
     
     // 0 0 8px 0 rgba(232,237,250,.6);
     // 0 2px 4px 0 rgba(232,237,250,.5);
@@ -281,7 +282,8 @@
   .main .content .detail{
     overflow-y: auto;
     overflow-x: hidden;
-    height: 100%;
+    height: calc(100% - 60px);
+    padding: 30px;
   }
 
   .main .content .catalog .catalog-content{
