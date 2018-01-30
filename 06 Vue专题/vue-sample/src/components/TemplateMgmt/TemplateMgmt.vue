@@ -2,15 +2,16 @@
   <el-tabs 
     v-model="activeName"
     type="border-card"
-    style="height:100%" 
+    class="tpl-mgmt"
+    style="height:calc(100% - 2px)"
     @tab-click="handleClick">
-    <el-tab-pane label="common" name="admin_common" style="height:100%">
+    <el-tab-pane label="common" name="admin_common" height="100%" class="tab-content">
         <tmpl-container></tmpl-container>
     </el-tab-pane>
-    <el-tab-pane label="科技企业" name="admin_tech">
+    <el-tab-pane label="科技企业" name="admin_tech" class="tab-content">
         <tmpl-container></tmpl-container>
     </el-tab-pane>
-    <el-tab-pane label="高校" name="admin_college">
+    <el-tab-pane label="高校" name="admin_college" class="tab-content">
         <tmpl-container></tmpl-container>
     </el-tab-pane>
 
@@ -52,7 +53,17 @@
     }
 </script>
 
-<style>
+<style lang="scss">
+.tpl-mgmt {
+    .el-tabs__content {
+        height: calc(100% - 68px);
+    }
+    .tab-content {
+        overflow-y: auto;
+        height: 100%;
+    }
+}
+
 
 </style>
 

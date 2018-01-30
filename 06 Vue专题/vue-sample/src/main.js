@@ -12,11 +12,18 @@ import './assets/font/iconfont.js'
 import './assets/font/iconfont.css'
 import './assets/scss/app.scss'
 
+import components from '@/func_components'
+
 
 
 
 
 Vue.use(ElementUI)
+Vue.prototype.$loading = ElementUI.Loading;
+
+Object.keys(components).forEach((key) => {
+  Vue.component(`z-${key}`, components[key])
+})
 
 Vue.config.productionTip = false
 

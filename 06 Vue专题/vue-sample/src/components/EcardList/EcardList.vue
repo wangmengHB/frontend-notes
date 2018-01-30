@@ -6,20 +6,24 @@
       <el-table-column
         prop="productName"
         label="名片名称"
+        header-align="center"
         width="180">
       </el-table-column>
       <el-table-column
         prop="productId"
         label="名片ID"
+        header-align="center"
         width="180">
       </el-table-column>
       <el-table-column
         prop="company"
+        header-align="center"
         label="公司认证">
       </el-table-column>
       <el-table-column
         prop="adminName"
         label="管理员"
+        header-align="center"
         width="180">
         <template slot-scope="scope">
             <div v-for="person in scope.row.adminName" :key="person">
@@ -30,6 +34,7 @@
       <el-table-column
         prop="appName"
         label="授权公众号"
+        header-align="center"
         width="180">
         <template slot-scope="scope">
             <div v-for="app in scope.row.appName" :key="app">
@@ -40,6 +45,7 @@
       <el-table-column
         prop="enabled"
         label="使能"
+        header-align="center"
         width="100">       
         <template slot-scope="scope">
             <el-switch 
@@ -55,28 +61,29 @@
 
 
 <script>
+    import {getProductList} from '../../api'
+
     export default {
         data () {
             return {
-                tableData: [
-                    {
-                       "productName": "string",
-                        "productId": 6,
-                        "company": "未认证",
-                        "adminName": ['xxx', 'yyy'],
-                        "appName": ['weixin1', 'weixin2'],
-                        "enabled": 0
-                    }, {
-                       "productName": "string",
-                        "productId": 6,
-                        "company": "未认证",
-                        "adminName": ['xxx', 'yyy'],
-                        "appName": ['weixin1', 'weixin2'],
-                        "enabled": 0
-                    }, 
-                ]
+                tableData: [],
+                pageNum: 0,
+
             }
+        },
+        mounted() {
+            let {tableData, pageNum} = this.$data;
+            let me = this;
+            if (pageNum == 0) {
+                getProductList().then(function(data) {
+                    me.$data.tableData = data.result;
+                });
+            }
+        },
+        methods: {
+            
         }
+
     }
 
 </script>
@@ -88,9 +95,6 @@
     overflow-x: hidden;
     overflow-y: auto;
     text-align: center;
-    thead th .cell {
-        text-align: center;
-    }
 }
 
 </style>

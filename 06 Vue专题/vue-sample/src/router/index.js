@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import * as api from '../api/index.js'
 
 const PageLayout = resolve => require(['@/components/layout/PageLayout.vue'], resolve)
 const ECardList = resolve => require(['@/components/ECardList/ECardList.vue'], resolve)

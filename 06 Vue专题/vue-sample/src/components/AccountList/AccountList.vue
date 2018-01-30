@@ -7,7 +7,7 @@
           <div class="title">角色</div>
           <div class="title">公司认证</div>
       </div>
-      <div class="grid-body">
+      <div class="grid-body" @scroll="handleScroll">
           <div class="grid-row" v-for="item in tableData" :key="item.userName">
               <div class="grid-cell-user">{{item.userName}}</div>
               <div class="grid-cell-detail" >
@@ -24,39 +24,33 @@
 </template>
 
 <script>
+    import {getUserList} from '../../api'
     export default {
         data () {
             return {
-                tableData: [
-                    {
-                        "userName": "张黎明",
-                        "adminAuth": [
-                            {
-                            "productName": "思必驰北京",
-                            "productId": 96100009,
-                            "auth": "管理员",
-                            "company": "未认证"
-                            },
-                            {
-                            "productName": "上交大",
-                            "productId": 96100024,
-                            "auth": "管理员",
-                            "company": "未认证"
-                            }
-                        ]
-                    }
-                ]
+                tableData: [],
+                pageNum: 0,
+            }
+        },
+        mounted () {
+            let {tableData, pageNum} = this.$data;
+            let me = this;
+            if (pageNum == 0) {
+                getUserList().then(function(data) {
+                    me.$data.tableData = data.result;
+                });
             }
         },
         methods: {
-            objectSpanMethod({ row, column, rowIndex, columnIndex }) {
-               
-            }
+           handleScroll() {
+               debugger;
+           }
         }
     }
 </script>
 
 <style scoped lang="scss">
+$grid_header_height: 47px;
 .account-list-grid {
     width: 100%;
     height: 100%;
@@ -65,16 +59,18 @@
     box-shadow:0 1px 5px #ccc;
     position: relative;
     font-size: 14px;
-
+    font-family: 'helvetica neue',arial,'hiragino sans gb',stheiti,'wenquanyi micro hei',\5FAE\8F6F\96C5\9ED1,\5B8B\4F53,sans-serif;
+    color: rgb(144, 147, 153);
     .grid-header {
         position: absolute;
         top: 0;
-        bottom: 50px;
+        bottom: $grid_header_height;
         display: block;
         width: 100%;
-        height: 50px;
-        line-height: 50px;
-        border-bottom: #ccc 2px solid;
+        height: $grid_header_height;
+        line-height: $grid_header_height;
+        border-bottom: #ccc 1px solid;
+        font-weight: 700;
         .title {
             display: inline-block;
             width: 19%;
@@ -84,7 +80,7 @@
 
     .grid-body {
         position: absolute;
-        top: 50px;
+        top: $grid_header_height;
         bottom: 0px;
         width: 100%;
         overflow-x: hidden;
