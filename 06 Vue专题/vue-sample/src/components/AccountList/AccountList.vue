@@ -7,7 +7,7 @@
           <div class="title">角色</div>
           <div class="title">公司认证</div>
       </div>
-      <div class="grid-body" @scroll="handleScroll">
+      <div class="grid-body" ref="table_body">
           <div class="grid-row" v-for="item in tableData" :key="item.userName">
               <div class="grid-cell-user">{{item.userName}}</div>
               <div class="grid-cell-detail" >
@@ -18,6 +18,13 @@
                       <div class="grid-cell">{{info.company}}</div>
                   </div>
               </div>
+          </div>
+          <div class="loading" ref="loading">
+            <p class='tc lh60 light_blue' v-if='hasMore && pageNum > 1'>
+                <z-ballSpinFadeLoader></z-ballSpinFadeLoader>
+                加载中...
+            </p>
+            <p class='tc lh34 light_blue' v-else>没有更多数据了</p>
           </div>
       </div>
   </div>
@@ -30,6 +37,17 @@
             return {
                 tableData: [],
                 pageNum: 0,
+                hasMore: true,
+            }
+        },
+        computed: {
+            productList() {
+                return this.tableData.map(item => {
+                    return {
+                        ...item,
+                        status: item.enable == 0? true: false
+                    }
+                }) 
             }
         },
         mounted () {
@@ -40,11 +58,48 @@
                     me.$data.tableData = data.result;
                 });
             }
+            let table = this.$refs.table_body;
+            table.addEventListener('scroll', () => {
+                if (window.requestAnimationFrame) {
+                    requestAnimationFrame(() => {
+                        this.scroll(table);
+                    })
+                } else {
+                    setTimeout(() => {
+                        this.scroll(table);
+                    }, 50)
+                }
+            })
+
         },
         methods: {
-           handleScroll() {
-               debugger;
-           }
+           scroll(table) {
+               let {scrollTop, scrollHeight, offsetHeight} = table;
+                if (Math.abs(scrollTop + offsetHeight - scrollHeight) < 5) {
+                    this.loadMore();
+                }
+           },
+           loadMore() {
+                let loadingEl = this.$refs.loading;
+                loadingEl.classList.remove('loading');
+                let {pageNum, tableData, hasMore} = this.$data;
+                let me = this;
+				this.$nextTick(()=>{
+                    if (!hasMore) {
+                        return;
+                    }
+					getUserList(++pageNum).then(function(data) {
+                        if (data.result && data.result.length > 0) {
+                            me.$data.tableData = tableData.concat(data.result);
+                            me.$data.pageNum++;
+                            return;
+                        }
+                        me.$data.hasMore = false;
+                    });
+				})
+				
+			},
+
         }
     }
 </script>
@@ -123,6 +178,10 @@ $grid_header_height: 47px;
                 width: 80%;
                 vertical-align: middle;
             }
+        }
+
+        .loading {
+            visibility: hidden;
         }
         
     }

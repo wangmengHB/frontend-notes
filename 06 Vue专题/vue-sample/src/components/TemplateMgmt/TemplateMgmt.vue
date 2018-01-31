@@ -6,13 +6,21 @@
     style="height:calc(100% - 2px)"
     @tab-click="handleClick">
     <el-tab-pane label="common" name="admin_common" height="100%" class="tab-content">
-        <tmpl-container></tmpl-container>
+        <tmpl-container
+          template-type="admin_common">
+
+        </tmpl-container>
     </el-tab-pane>
     <el-tab-pane label="科技企业" name="admin_tech" class="tab-content">
-        <tmpl-container></tmpl-container>
+        <tmpl-container
+          template-type="admin_tech">
+
+        </tmpl-container>
     </el-tab-pane>
     <el-tab-pane label="高校" name="admin_college" class="tab-content">
-        <tmpl-container></tmpl-container>
+        <tmpl-container
+          template-type="admin_college">
+        </tmpl-container>
     </el-tab-pane>
 
   </el-tabs>
@@ -28,20 +36,9 @@
                     'admin_common',
                     'admin_tech',
                     'admin_college'
-                ],
-                templateTypes: [
-                    
-                    {
-                    "id": 1,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                    }
-  
                 ]
             };
-            },
+        },
         methods: {
             handleClick(tab, event) {
                 console.log(tab, event);

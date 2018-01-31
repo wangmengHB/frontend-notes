@@ -2,278 +2,141 @@
   <div class="tmpl-container">
       <div class="container">
           <div class="item" v-for="tpl in tpls" :key="tpl.id">
-            <img src="./file.png" alt=""/>
+            <img src="./file.png" @click="download(tpl.templateUrl)"/>
             <div class="title">
                 {{tpl.templateName}}
+            </div>
+            <div class="close" @click="deleteTemplate(tpl)">
+                <i class="el-icon-close"></i>
             </div>
           </div>
       </div>
       
-      <el-upload
-        class="upload"
-        ref="upload"
-        action="https://jsonplaceholder.typicode.com/posts/"
-        :on-preview="handlePreview"
-        :on-remove="handleRemove"
-        :file-list="fileList"
-        :auto-upload="false">
-        <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+      <div class="upload">
+        <el-button size="small" type="primary" @click="chooseFile">选取文件</el-button>
         <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
-      </el-upload>
+          <input type="file" ref="input" @change="handleChange" accept=".xls,.xlsx"/>
+          <div class='upload_list_wrapper pt10'>
+            <ul class='files_list'>
+                <li v-for='(item,index) in fileList' :key="item.name">
+                    <i class='el-icon-document icon'></i>
+                    <span>{{item.name}}</span>
+                    <i class='el-icon-success r mr10'></i>
+                    <i class='el-icon-close r mr10' @click='deleteItem(index)'></i>				
+                </li>
+            </ul>
+        </div>
+      </div>
+
+
   </div>
 </template>
 
 
 <script>
+import {
+    getTplByType, 
+    uploadTemplate, 
+    deleteTemplate, 
+    indicator
+} from '../../api'
 export default {
+    props: {
+        templateType: {
+            type: String,
+        },
+        limit: {
+            type: Number,
+            default: function() {
+                return 1;
+            }
+        }
+
+    },
     data () {
         return {
             tpls: [
-                {
-                    "id": 1,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 2,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 3,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 4,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 5,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 6,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 7,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 8,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 9,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 10,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 11,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 12,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 13,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 14,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 15,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 16,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 17,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 18,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 19,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 20,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 21,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 22,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 23,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 24,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 25,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 26,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 27,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 28,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 29,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 30,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 31,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 32,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 33,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 34,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 35,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 36,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 37,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 38,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 39,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, {
-                    "id": 40,
-                    "templateType": "admin_common",
-                    "templateName": "个性化定制.xlsx",
-                    "templateUrl": "aispeech-aichat.oss-cn-hangzhou.aliyuncs.com/enterprise-card/common-resource/个性化定制.xlsx",
-                    "createBy": null
-                }, 
-            ]
+            ],
+            fileList: []
+        }
+    },
+    mounted () {
+        let me = this;
+        getTplByType(me.templateType).then((res) => {
+            me.$data.tpls = res.result;
+        })
+    },
+    methods: {
+        download(url) {
+            let downUrl = `http://${url}`;
+            location.href = downUrl;
+        },
+
+        deleteTemplate(tpl) {
+            let me = this;
+            let fileId = tpl.id;
+            deleteTemplate(fileId).then(res => {
+                getTplByType(me.templateType).then((res) => {
+                    me.$data.tpls = res.result;
+                })
+            })
+            
+        },
+
+        submitUpload() {
+            let templateType = this.templateType;
+            let me = this;
+            
+            this.$data.fileList.forEach(item => {
+                let file = new FormData();
+                file.append('fileName', item);
+                uploadTemplate(templateType, file).then((res)=>{
+                    me.$data.fileList = [];
+                    getTplByType(me.templateType).then((res) => {
+                        me.$data.tpls = res.result;
+                    })
+                })
+            })          
+        },
+
+        chooseFile() {
+            this.$refs.input.click();
+        },
+
+        handleChange(e) {          
+            let files = e.target.files;
+            if (!isExcel(files)) {
+                this.$refs.input.value = '';
+                return indicator.error('只支持Excel格式文件');
+                
+            }
+            this.fileList.push(...files);
+            this.fileList.splice(0,this.fileList.length - this.limit)
+            this.$refs.input.value = '';
+            
+        },
+
+        deleteItem(index) {
+            this.fileList.splice(index,1)
         }
     }
 }
+
+const isExcel = (files) => {
+    if (files.length == 0) {
+        return true;
+    }
+    let res = false;
+    for (let i = 0; i < files.length; i++) {
+        let file = files[i];
+        if (/excel/.test(file.type)) {
+            return res = true;
+        }
+    }
+    return res;
+}
+
+
 </script>
 
 <style scoped lang="scss">
@@ -283,35 +146,64 @@ export default {
     box-sizing: content-box;
 
     .container {
-        width: 100%;
+        width: calc(100% - 2px);
         height: 340px;
+        border: 1px solid grey;
         overflow-y: auto;
         .item {
             display: inline-block;
+            vertical-align: middle;
             padding: 10px;
             width: 100px;
             height: 80px;
             margin: 10px;
             font-size: 10px;
             text-align: center;
+            position: relative;
             img {
                 width: 41px;
                 height: 49px;
                 text-align: center;
                 margin: 0 auto;
+                &:hover {
+                    cursor: pointer;
+                }
             }
 
-            &:hover {
-                cursor: pointer;
+            &:hover {             
                 background-color: #ccc;
+                .close {
+                    display: block;
+                }            
             }
+
+            .close {
+                width: 30px;
+                height: 30px;
+                top: 0;
+                right: 0;
+                position: absolute;
+                display: none;
+                i {
+                    width: 20px;
+                    line-height: 20px;
+                    text-align: center;
+                }
+                &:hover {
+                    cursor: pointer;
+                }
+            } 
+
+
         }
     }
     
     .upload {
         margin-top: 20px;
         width: 300px;
-        // height: 100px;
+        input{
+            display:none;
+        }
     }
 }
 </style>

@@ -11,7 +11,8 @@ class Indicator {
     showBusy() {
         this.loadingCount++;
         this.loadingService = vm.$loading.service({
-            lock: true,
+            // lock: true,
+            // target: '#app .detail',
             text: '拼命加载中...',
             spinner: 'el-icon-loading',
             background: 'rgba(0, 0, 0, 0.5)'

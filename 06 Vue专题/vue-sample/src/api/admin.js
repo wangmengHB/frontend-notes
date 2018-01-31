@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {base} from './config.js'
+import indicator from './indicator'
 
 
 const handleResponse = (res) => new Promise((resolve, reject) => {
@@ -26,25 +27,32 @@ export const getTplByType = (type) => {
         .then((res) => handleResponse(res))
 }
 
-export const uploadTemplate = (type, params) => {
+export const uploadTemplate = (type, file) => {
     return axios({
 		method: 'post',
 		url: `${base}/v1/admin/${type}/commonTemplate`,
-		data: params.file,
+		data: file,
 		headers:{
 			'Content-Type':'multipart/form-data'
 		}
-	}).then(res => errorHandle(res));
+	}).then(res => handleResponse(res));
 }
 
-export const switchProduct = (enable, productID) => {
-    // 0: enable; 1: disable
+export const deleteTemplate = (fileId) => {
+	return axios.delete(`${base}/v1/admin/${fileId}/commonTemplate`)
+		.then(res => handleResponse(res))
+}
+
+
+export const switchProduct = (on = true, productID) => {
+	// 0: enable; 1: disable
+	let enable = on? 0: 1;
     return axios({
 		method: 'post',
 		url: `${base}/v1/admin/${enable}/${productID}/ability`,
-		data: params.file,
 		headers:{
 			'Content-Type':'application/json'
 		}
-	}).then(res => errorHandle(res));
+	}).then(res => handleResponse(res));
 }
+

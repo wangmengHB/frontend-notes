@@ -19,27 +19,18 @@ const error_show_result = ['/v1/topic/excel','/v1/kg/kgFile']
  * 本地环境
  **/
 // let base = '/api';
-// let authorizer = '/authorizer';
 
 /**
  * 线上环境
  **/
-// let base = 'http://ba.dui.ai:8080/api';
-// let base = 'http://47.96.191.103:9080/api'
-// let base = 'http://120.27.216.199:8080/api';
-// let authorizer = 'http://dev.wx.dui.ai/authorizer';
 
-let base,authorizer;
+
+let base;
 if (isDevEnv()) {
-    // base = 'http://dev.ba.dui.ai:8080/api'
     base = 'http://120.27.216.199:9080/api';
-	authorizer = 'http://dev.wx.dui.ai/authorizer';
 } else {
 	base = `http://${location.host}/api`
-	authorizer = `http://${location.host.replace(/\.ba\./,'.wx.')}/authorizer`;
 }
-
-
 
 
 /**
@@ -49,15 +40,12 @@ axios.defaults.withCredentials = true;
 
 
 
-
-
-
 axios.interceptors.request.use(function (config) {
 	// indicator.showBusy()
     // Do something before request is sent
     return config;
   }, function (error) {
-  	indicator.checkStatus()
+  	indicator.hideBusy()
     // Do something with request error
     return Promise.reject(error);
   });
@@ -66,33 +54,19 @@ axios.interceptors.request.use(function (config) {
 
 axios.interceptors.response.use(
 	function (response) {
-        indicator.checkStatus()
+        indicator.hideBusy()
         if (response.data.code == 200) {
             return response;
         }
-        let url = response.config.url
-        if(arrIncludeItem(reponse_interceptor_ignor,url)) {
+
+        if(response.data.msg) {
+            indicator.error(response.data.msg+','+response.data.result);
             return response;
         }
-
-        if(arrIncludeItem(error_show_result,url)){
-            indicator.message({
-                showClose:true,
-                message:response.data.msg+','+response.data.result,
-                type: 'error',
-                duration:5000
-            })
-            return
-        }
-
-        if(response.data.msg){
-            indicator.error(response.data.msg+','+response.data.result)
-        }
-        return
-
+        
 	},
 	function (error) {
-		indicator.checkStatus()
+		indicator.hideBusy()
 		indicator.error('服务器错误')
 		// return Promise.reject(error);
 	}
