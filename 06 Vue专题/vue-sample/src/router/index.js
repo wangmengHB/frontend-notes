@@ -7,6 +7,8 @@ const PageLayout = resolve => require(['@/components/layout/PageLayout.vue'], re
 const ECardList = resolve => require(['@/components/ECardList/ECardList.vue'], resolve)
 const AccountList = resolve => require(['@/components/AccountList/AccountList.vue'], resolve)
 const TemplateMgmt = resolve => require(['@/components/TemplateMgmt/TemplateMgmt.vue'], resolve)
+const UserLogin = resolve => require(['@/components/UserLogin/UserLogin.vue'], resolve)
+
 
 
 Vue.use(Router)
@@ -19,7 +21,8 @@ const router = new Router({
     {
       path: '/',
       name: 'test',
-      redirect: '/admin/ecard',
+      component: UserLogin,
+      // redirect: '/admin/ecard',
     },
     {
       path: '/admin',
