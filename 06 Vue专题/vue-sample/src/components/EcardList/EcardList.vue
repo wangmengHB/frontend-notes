@@ -161,6 +161,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     text-align: center;
+    box-shadow: 0 1px 5px #ccc;
 }
 
 </style>

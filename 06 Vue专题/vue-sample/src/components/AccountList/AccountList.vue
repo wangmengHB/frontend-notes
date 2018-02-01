@@ -8,8 +8,8 @@
           <div class="title">公司认证</div>
       </div>
       <div class="grid-body" ref="table_body">
-          <div class="grid-row" v-for="item in tableData" :key="item.userName">
-              <div class="grid-cell-user">{{item.userName}}</div>
+          <div class="grid-row" v-for="item in tableData" :key="item.loginName">
+              <div class="grid-cell-user">{{item.loginName}}</div>
               <div class="grid-cell-detail" >
                   <div class="mini-row" v-for="info in item.adminAuth" :key="info.productName">
                       <div class="grid-cell">{{info.productName}}</div>
@@ -40,16 +40,7 @@
                 hasMore: true,
             }
         },
-        computed: {
-            productList() {
-                return this.tableData.map(item => {
-                    return {
-                        ...item,
-                        status: item.enable == 0? true: false
-                    }
-                }) 
-            }
-        },
+        
         mounted () {
             let {tableData, pageNum} = this.$data;
             let me = this;

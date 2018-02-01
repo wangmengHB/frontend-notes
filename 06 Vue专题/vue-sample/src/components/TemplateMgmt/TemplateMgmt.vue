@@ -8,7 +8,6 @@
     <el-tab-pane label="common" name="admin_common" height="100%" class="tab-content">
         <tmpl-container
           template-type="admin_common">
-
         </tmpl-container>
     </el-tab-pane>
     <el-tab-pane label="科技企业" name="admin_tech" class="tab-content">

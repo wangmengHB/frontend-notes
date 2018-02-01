@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div class="header">
-      <div class="card" @click="cardClickAction">
+      <div class="card">
         <el-row>
             <el-col :span='12'>
                 <svg class="iconfont r" aria-hidden="true" style='height:50px;width:70px;'>
@@ -36,7 +36,7 @@
     <div class="content">
         <transition name="sidemenu">
 
-          <div class="catalog" v-if="isCatalogPageShow" >
+          <div class="catalog">
             <div class="catalog-content">
               <p class="catalog-name">企业名片</p>
               <ul class="catalog-list mt30">
@@ -83,16 +83,9 @@
       }
     },
     computed:{
-        // ...mapState({
-        //     product: state => state.product.product,
-        //     activeTab: state => state.control.activeMenu
-        // }),
-        activeTab() {
-            return 'ecardlist';
-        },
-        isCatalogPageShow(){
-            return true;
-        }
+        ...mapState({
+            activeTab: state => state.global.activePage
+        }),
     },
     mounted(){
         this.$nextTick(()=>{
@@ -119,13 +112,6 @@
         })
     },
     methods:{
-      cardClickAction(){
-        // this.$router.push({
-        //   path : '/page/card'
-        // })
-        // // Bus.$emit('changePage');
-        // this.$store.commit('updateProduct',{})
-      },
       log_out(){
         this.$confirm('你确定要退出登陆吗?', '提示', {
             confirmButtonText: '确定',

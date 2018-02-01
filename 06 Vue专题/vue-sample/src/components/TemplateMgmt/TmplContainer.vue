@@ -103,15 +103,19 @@ export default {
             this.$refs.input.click();
         },
 
-        handleChange(e) {          
-            let files = e.target.files;
-            if (!isExcel(files)) {
+        handleChange(e) {
+            // strict <input/> only has one file at one time.          
+            let file = e.target.files[0];
+            if (!file) {
+                return;
+            }
+            if (!isExcel(file)) {
                 this.$refs.input.value = '';
                 return indicator.error('只支持Excel格式文件');
                 
             }
-            this.fileList.push(...files);
-            this.fileList.splice(0,this.fileList.length - this.limit)
+            this.fileList.push(file);
+            this.fileList.splice(0, this.fileList.length - this.limit)
             this.$refs.input.value = '';
             
         },
@@ -122,18 +126,14 @@ export default {
     }
 }
 
-const isExcel = (files) => {
-    if (files.length == 0) {
+const isExcel = (file) => {
+    if (/excel/.test(file.type)) {
         return true;
     }
-    let res = false;
-    for (let i = 0; i < files.length; i++) {
-        let file = files[i];
-        if (/excel/.test(file.type)) {
-            return res = true;
-        }
+    if (/openxmlformats\-officedocument\.spreadsheetml/.test(file.type)) {
+        return true;
     }
-    return res;
+    return false;
 }
 
 
@@ -146,9 +146,10 @@ const isExcel = (files) => {
     box-sizing: content-box;
 
     .container {
-        width: calc(100% - 2px);
+        width: calc(100% - 4px);
+        margin: 2px;
         height: 340px;
-        border: 1px solid grey;
+        box-shadow: 0 1px 5px #ccc;
         overflow-y: auto;
         .item {
             display: inline-block;

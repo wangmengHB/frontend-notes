@@ -9,6 +9,11 @@ const handleResponse = (res) => new Promise((resolve, reject) => {
     }
 })
 
+export const authValidation = params => {
+	return axios.post(`${base}/v1/auth/validation`, params)
+		.then(res => handleResponse(res));
+};
+
 
 export const getProductList = (page = 0) => {
     return axios.get(`${base}/v1/admin/${page}/products`)

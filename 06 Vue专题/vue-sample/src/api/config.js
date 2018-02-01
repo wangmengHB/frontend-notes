@@ -10,10 +10,6 @@ const isDevEnv = () => {
     return false;
 }
 
-// 统一错误处理 忽视的接口
-const reponse_interceptor_ignor = ['/v1/auth/validation'] 
-// 错误时 显示result信息的接口
-const error_show_result = ['/v1/topic/excel','/v1/kg/kgFile']
 
 /**
  * 本地环境
