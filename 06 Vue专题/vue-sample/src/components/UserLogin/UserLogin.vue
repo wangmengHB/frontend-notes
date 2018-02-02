@@ -2,7 +2,8 @@
 <div class="login-page">
  <div class="login-box">
     <div class="header">思必驰企业名片ADMIN登录</div>
-    <el-form 
+    <el-form
+        label-position="left" 
         :model="loginForm" status-icon 
         :rules="rules" 
         ref="loginForm" 
@@ -12,11 +13,11 @@
         <el-input v-model="loginForm.loginName"></el-input>
     </el-form-item>
     <el-form-item label="密码" prop="loginPass">
-        <el-input type="password" v-model="loginForm.loginPass" auto-complete="on"></el-input>
+        <el-input type="password" v-model="loginForm.loginPass" auto-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ="on"></el-input>
     </el-form-item>  
-    <el-form-item class="login-btn">
+    <div class="login-btn">
         <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
-    </el-form-item>
+    </div>
     </el-form>
     </div>
 </div> 
@@ -52,10 +53,14 @@
         }
 
         .login-form {
-            // width: 40%;
             margin: 0 auto;
             margin-top: 20px;
             padding: 20px;
+
+            .login-btn {
+                margin-top: 50px;
+                text-align: center;
+            }
         }
 
     }
