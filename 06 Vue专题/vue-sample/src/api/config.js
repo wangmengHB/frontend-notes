@@ -66,7 +66,6 @@ axios.interceptors.response.use(
 
 
         if(response.data.msg) {
-            debugger;
             indicator.error(response.data.msg+','+response.data.result);
             return response;
         }
