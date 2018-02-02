@@ -1,6 +1,7 @@
 import axios from 'axios'
 import {base} from './config.js'
 import indicator from './indicator'
+import md5 from 'md5'
 
 
 const handleResponse = (res) => new Promise((resolve, reject) => {
@@ -9,10 +10,21 @@ const handleResponse = (res) => new Promise((resolve, reject) => {
     }
 })
 
-export const authValidation = params => {
-	return axios.post(`${base}/v1/auth/validation`, params)
+export const adminLogin = ({loginName, loginPass}) => {
+	let params = {
+		loginName,
+		loginPass: md5(loginPass),
+		loginTime: new Date().getTime()
+	}
+	return axios.post(`${base}/v1/auth/admin/login`, params)
 		.then(res => handleResponse(res));
 };
+
+export const adminLogout = () => {
+	return axios.get(`${base}/v1/auth/admin/logout`)
+		.then(res => handleResponse(res));
+}
+
 
 
 export const getProductList = (page = 0) => {

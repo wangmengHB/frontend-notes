@@ -66,7 +66,7 @@
 
 <script>
 //   import Bus from '@/assets/js/bus.js'
-//   import {authLogout} from '../api/api.js';
+  import {adminLogout} from '../../api';
   import {mapState} from 'vuex';
   export default {
     data() {
@@ -119,7 +119,7 @@
             type: 'warning'
         }).then(() => {
             //调用删除操作
-              this.loginout()  
+              this.logout()  
         }).catch(() => {
             this.$message({
                 type: 'info',
@@ -127,25 +127,11 @@
             });          
         });
       },
-      loginout(){ // 退出登录
-        let Params={
-          "token": window.localStorage.getItem('token'),
-        };
-        // authLogout(Params).then(res => {
-        //   if(res.code == 200){
-        //     this.$message({
-        //         type: 'success',
-        //         message: '退出成功'
-        //     });  
-        //     window.localStorage.removeItem('token')
-        //     window.localStorage.removeItem('user')
-        //     window.location.href = res.url;
-        //   }else {
-        //     console.log(res);
-        //   }
-        // }).catch(function (error) {
-        //   console.log(error);
-        // });
+      logout(){ // 退出登录
+        let me = this;
+        adminLogout().then(res => {
+            me.$router.push({name: 'login'})
+        })
       },
       menuSelect(routeName){
         this.$router.push({name:routeName})

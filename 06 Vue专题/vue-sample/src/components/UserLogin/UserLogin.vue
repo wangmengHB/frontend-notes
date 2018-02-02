@@ -2,23 +2,23 @@
 <div class="login-page">
  <div class="login-box">
     <div class="header">思必驰企业名片ADMIN登录</div>
-    <el-form
-        label-position="left" 
-        :model="loginForm" status-icon 
-        :rules="rules" 
-        ref="loginForm" 
-        label-width="100px" 
-        class="login-form">
-    <el-form-item label="用户名" prop="loginName">
-        <el-input v-model="loginForm.loginName"></el-input>
-    </el-form-item>
-    <el-form-item label="密码" prop="loginPass">
-        <el-input type="password" v-model="loginForm.loginPass" auto-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ="on"></el-input>
-    </el-form-item>  
-    <div class="login-btn">
-        <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
-    </div>
-    </el-form>
+        <el-form
+            label-position="left" 
+            :model="loginForm" status-icon 
+            :rules="rules" 
+            ref="loginForm" 
+            label-width="100px" 
+            class="login-form">
+            <el-form-item label="用户名" prop="loginName">
+                <el-input v-model="loginForm.loginName"></el-input>
+            </el-form-item>
+            <el-form-item label="密码" prop="loginPass">
+                <el-input type="password" v-model="loginForm.loginPass" auto-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ="on"></el-input>
+            </el-form-item>  
+            <div class="login-btn">
+                <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
+            </div>
+        </el-form>
     </div>
 </div> 
 </template>
@@ -73,6 +73,9 @@
 
 
 <script>
+import {adminLogin} from '../../api'
+import axios from 'axios'
+
 export default {
     data() {
 
@@ -108,13 +111,16 @@ export default {
     },
     methods: {
       submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert('submit!');
-          } else {
-            console.log('error submit!!');
-            return false;
+        let me = this;
+        this.$refs[formName].validate((valid) => {      
+          if (!valid) {
+              return false;
           }
+          adminLogin(this.loginForm).then((res) => {
+              axios.defaults.headers.authToken = res.result;
+              me.$router.push({name: 'ecardlist'})
+          })
+
         });
       },
       resetForm(formName) {

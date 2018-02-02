@@ -1,5 +1,6 @@
 import axios from 'axios'
 import indicator from './indicator.js'
+import router from '../router'
 
 const isDevEnv = () => {
     if (window.location.host == 'dev.ba.dui.ai' || 
@@ -55,7 +56,17 @@ axios.interceptors.response.use(
             return response;
         }
 
+        if (response.data.code == 801 ||
+            response.data.code == 802 ||
+            response.data.code == 804
+        ) {
+            router.push({name: 'login'})
+            return response;
+        }
+
+
         if(response.data.msg) {
+            debugger;
             indicator.error(response.data.msg+','+response.data.result);
             return response;
         }

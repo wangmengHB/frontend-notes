@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store'
-import {authValidation} from '../api'
 
-const PageLayout = resolve => require(['@/components/layout/PageLayout.vue'], resolve)
-const ECardList = resolve => require(['@/components/ECardList/ECardList.vue'], resolve)
-const AccountList = resolve => require(['@/components/AccountList/AccountList.vue'], resolve)
-const TemplateMgmt = resolve => require(['@/components/TemplateMgmt/TemplateMgmt.vue'], resolve)
-const UserLogin = resolve => require(['@/components/UserLogin/UserLogin.vue'], resolve)
+const PageLayout = () => import('@/components/layout/PageLayout.vue')
+const ECardList = () => import('@/components/ECardList/ECardList.vue')
+const AccountList = () => import('@/components/AccountList/AccountList.vue')
+const TemplateMgmt = () => import('@/components/TemplateMgmt/TemplateMgmt.vue')
+const UserLogin = () => import('@/components/UserLogin/UserLogin.vue')
+
 
 
 
@@ -20,7 +20,7 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'test',
+      name: 'login',
       component: UserLogin,
       // redirect: '/admin/ecard',
     },
@@ -66,24 +66,24 @@ router.beforeEach((to, from, next) => {
     tokenVerify = false;
   }
 
-  if (to.meta.requireAuth) {
-    let params = {
-      token: token? token: ''
-    }
-    authValidation(params).then(res => {
-      console.log(res);
-      // if (res.code == 200) {
-      //   window.localStorage.setItem('user', res.result);
-      //   next()
-      // } else if (res.code == 400) {
-      //   window.location.href = res.url;
-      // } else {
-      //   window.location.href = res.url;            
-      // }
-    }).catch(function (error) {
-      console.log(error); 
-    });
-  }
+  // if (to.meta.requireAuth) {
+  //   let params = {
+  //     token: token? token: ''
+  //   }
+  //   authValidation(params).then(res => {
+  //     console.log(res);
+  //     // if (res.code == 200) {
+  //     //   window.localStorage.setItem('user', res.result);
+  //     //   next()
+  //     // } else if (res.code == 400) {
+  //     //   window.location.href = res.url;
+  //     // } else {
+  //     //   window.location.href = res.url;            
+  //     // }
+  //   }).catch(function (error) {
+  //     console.log(error); 
+  //   });
+  // }
 
   // for test
 
