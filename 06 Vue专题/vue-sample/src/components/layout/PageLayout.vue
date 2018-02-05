@@ -20,7 +20,7 @@
         <div class='dropdown-menu-container' :class="{'active':user_config_active}" 
             :style="dropdown_menu_style">
             <ul class="dropdown-menu-list">
-              <li><p>{{user}}</p></li>
+              <li><p>{{loginName}}</p></li>
               <li class="divider"></li>
               <li @click="changePassWord" class='pointer'>修改密码</li>
               <li class="divider"></li>
@@ -65,17 +65,18 @@
 </template>
 
 <script>
-//   import Bus from '@/assets/js/bus.js'
-  import {adminLogout} from '../../api';
+  import {userLogout} from '../../api';
   import {mapState} from 'vuex';
+  import {
+    PRODUCT_LIST, ACCOUNT_LIST, TEMPLATE_MGMT, USER_LOGIN, CHANGE_PASS
+  } from '../../constant'
   export default {
     data() {
       return {
-        user : window.localStorage.getItem('user'),
         menuList:[
-            {routeName:'ecardlist',label:'注册企业名片',icon:'el-icon-setting'},
-            {routeName:'accountlist',label:'注册用户',icon:'el-icon-service'},
-            {routeName:'templatemgmt',label:'企业名片模板',icon:'el-icon-upload'},
+            {routeName: PRODUCT_LIST, label:'注册企业名片',icon:'el-icon-setting'},
+            {routeName: ACCOUNT_LIST, label:'注册用户',icon:'el-icon-service'},
+            {routeName: TEMPLATE_MGMT, label:'企业名片模板',icon:'el-icon-upload'},
         ],
         user_icon_style:{},
         dropdown_menu_style:{},
@@ -84,7 +85,8 @@
     },
     computed:{
         ...mapState({
-            activeTab: state => state.global.activePage
+            activeTab: state => state.activePage,
+            loginName: state => state.loginName
         }),
     },
     mounted(){
@@ -112,7 +114,7 @@
         })
     },
     methods:{
-      log_out(){
+      log_out() {
         this.$confirm('你确定要退出登陆吗?', '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
@@ -129,8 +131,9 @@
       },
       logout(){ // 退出登录
         let me = this;
-        adminLogout().then(res => {
-            me.$router.push({name: 'login'})
+        userLogout().then(res => {
+            me.$store.commit("LOGOUT")
+            me.$router.push({name: USER_LOGIN})
         })
       },
       menuSelect(routeName){
@@ -140,14 +143,7 @@
         this.user_config_active = !this.user_config_active;
       },
       changePassWord(){
-        let suffix = `/?service=http%3A%2F%2F${location.host}#/ResetPasswordStp1`;
-        window.localStorage.removeItem('token')
-        window.localStorage.removeItem('user')
-        if(location.host == 'ba.dui.ai'){
-            location.href = 'https://account.dui.ai'+suffix
-        }else{
-            location.href = 'https://account.t.dui.ai'+suffix
-        }
+        this.$router.push({name: CHANGE_PASS})
       }
     },
 

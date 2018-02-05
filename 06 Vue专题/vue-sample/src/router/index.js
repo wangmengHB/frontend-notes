@@ -1,12 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store'
+import {PRODUCT_LIST, ACCOUNT_LIST, TEMPLATE_MGMT, USER_LOGIN, CHANGE_PASS} from '../constant'
 
 const PageLayout = () => import('@/components/layout/PageLayout.vue')
 const ECardList = () => import('@/components/ECardList/ECardList.vue')
 const AccountList = () => import('@/components/AccountList/AccountList.vue')
 const TemplateMgmt = () => import('@/components/TemplateMgmt/TemplateMgmt.vue')
-const UserLogin = () => import('@/components/UserLogin/UserLogin.vue')
+const UserLogin = () => import('@/components/LoginPage/UserLogin.vue')
+const ChangePass = () => import('@/components/LoginPage/ChangePass.vue')
 
 
 
@@ -20,33 +22,41 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'login',
+      redirect: '/login'
+    },
+    {
+      path: '/login',
+      name: USER_LOGIN,
       component: UserLogin,
-      // redirect: '/admin/ecard',
+    }, 
+    {
+      path: '/changepass',
+      name: CHANGE_PASS,
+      component: ChangePass
     },
     {
       path: '/admin',
-      name: 'admin',
+      // name: 'admin',
       component: PageLayout,
       redirect: '/admin/ecard',
       children: [
         {
-          path: 'ecard',
-          name: 'ecardlist',
+          path: 'product',
+          name: PRODUCT_LIST,
           component: ECardList,
           meta: {
             requireAuth: needAuth,
           }
         }, {
-          path: 'accout',
-          name: 'accountlist',
+          path: 'account',
+          name: ACCOUNT_LIST,
           component: AccountList,
           meta: {
             requireAuth: needAuth,
           }
         }, {
           path: 'template',
-          name: 'templatemgmt',
+          name: TEMPLATE_MGMT,
           component: TemplateMgmt,
           meta: {
             requireAuth: needAuth,

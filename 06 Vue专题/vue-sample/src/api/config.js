@@ -1,6 +1,7 @@
 import axios from 'axios'
 import indicator from './indicator.js'
 import router from '../router'
+import {USER_LOGIN} from '../constant'
 
 const isDevEnv = () => {
     if (window.location.host == 'dev.ba.dui.ai' || 
@@ -11,22 +12,11 @@ const isDevEnv = () => {
     return false;
 }
 
-
-/**
- * 本地环境
- **/
-// let base = '/api';
-
-/**
- * 线上环境
- **/
-
-
-let base;
+let root;
 if (isDevEnv()) {
-    base = 'http://120.27.216.199:9080/api';
+    root = 'http://120.27.216.199:9080';
 } else {
-	base = `http://${location.host}/api`
+	root = `http://${location.host}`
 }
 
 
@@ -34,8 +24,6 @@ if (isDevEnv()) {
  *  携带cookie
  **/
 axios.defaults.withCredentials = true;
-
-
 
 axios.interceptors.request.use(function (config) {
 	// indicator.showBusy()
@@ -59,26 +47,22 @@ axios.interceptors.response.use(
         if (response.data.code == 801 ||
             response.data.code == 802 ||
             response.data.code == 804
-        ) {
-            router.push({name: 'login'})
-            return response;
+        ) {  
+            router.push({name: USER_LOGIN})
+            return Promise.reject(response.data.result);
         }
 
-
-        if(response.data.msg) {
-            indicator.error(response.data.msg+','+response.data.result);
-            return response;
-        }
-        
+        indicator.error(response.data.msg+','+response.data.result);
+        return Promise.reject(response.data.result);           
 	},
 	function (error) {
 		indicator.hideBusy()
 		indicator.error('服务器错误')
-		// return Promise.reject(error);
+		return Promise.reject(error);
 	}
 );
 
 
 export {
-    base
+    root
 }

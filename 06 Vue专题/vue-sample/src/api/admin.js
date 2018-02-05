@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {base} from './config.js'
+import {root} from './config.js'
 import indicator from './indicator'
 import md5 from 'md5'
 
@@ -10,44 +10,56 @@ const handleResponse = (res) => new Promise((resolve, reject) => {
     }
 })
 
-export const adminLogin = ({loginName, loginPass}) => {
+export const changePass = ({loginName, oldPass, loginPass}) => {
+	let params = {
+		loginName,
+		loginPass: md5(oldPass),
+		newLoginPass: md5(loginPass),
+		loginTime: new Date().getTime()
+	}
+	return axios.post(`${root}/api/v1/admin/adminPassword`, params)
+		.then(res => handleResponse(res))
+}
+
+
+export const userLogin = ({loginName, loginPass}) => {
 	let params = {
 		loginName,
 		loginPass: md5(loginPass),
 		loginTime: new Date().getTime()
 	}
-	return axios.post(`${base}/v1/auth/admin/login`, params)
+	return axios.post(`${root}/api/v1/auth/admin/login`, params)
 		.then(res => handleResponse(res));
 };
 
-export const adminLogout = () => {
-	return axios.get(`${base}/v1/auth/admin/logout`)
+export const userLogout = () => {
+	return axios.get(`${root}/api/v1/auth/admin/logout`)
 		.then(res => handleResponse(res));
 }
 
 
 
 export const getProductList = (page = 0) => {
-    return axios.get(`${base}/v1/admin/${page}/products`)
+    return axios.get(`${root}/api/v1/admin/${page}/products`)
         .then((res) => handleResponse(res))
 }
 
 
 export const getUserList = (page = 0) => {
-    return axios.get(`${base}/v1/admin/${page}/users`)
+    return axios.get(`${root}/api/v1/admin/${page}/users`)
         .then((res) => handleResponse(res))
 }
 
 
 export const getTplByType = (type) => {
-    return axios.get(`${base}/v1/admin/${type}/commonTemplate`)
+    return axios.get(`${root}/api/v1/admin/${type}/commonTemplate`)
         .then((res) => handleResponse(res))
 }
 
 export const uploadTemplate = (type, file) => {
     return axios({
 		method: 'post',
-		url: `${base}/v1/admin/${type}/commonTemplate`,
+		url: `${root}/api/v1/admin/${type}/commonTemplate`,
 		data: file,
 		headers:{
 			'Content-Type':'multipart/form-data'
@@ -56,7 +68,7 @@ export const uploadTemplate = (type, file) => {
 }
 
 export const deleteTemplate = (fileId) => {
-	return axios.delete(`${base}/v1/admin/${fileId}/commonTemplate`)
+	return axios.delete(`${root}/api/v1/admin/${fileId}/commonTemplate`)
 		.then(res => handleResponse(res))
 }
 
@@ -66,7 +78,7 @@ export const switchProduct = (on = true, productID) => {
 	let enable = on? 0: 1;
     return axios({
 		method: 'post',
-		url: `${base}/v1/admin/${enable}/${productID}/ability`,
+		url: `${root}/api/v1/admin/${enable}/${productID}/ability`,
 		headers:{
 			'Content-Type':'application/json'
 		}

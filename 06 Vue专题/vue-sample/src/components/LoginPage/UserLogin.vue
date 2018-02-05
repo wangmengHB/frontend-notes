@@ -54,8 +54,11 @@ div.login-page
 
 
 <script>
-import {adminLogin} from '../../api'
+import {userLogin} from '../../api'
 import axios from 'axios'
+import {
+    PRODUCT_LIST, ACCOUNT_LIST, TEMPLATE_MGMT, USER_LOGIN, CHANGE_PASS
+} from '../../constant'
 
 export default {
     data() {
@@ -97,9 +100,10 @@ export default {
           if (!valid) {
               return false;
           }
-          adminLogin(this.loginForm).then((res) => {
+          userLogin(this.loginForm).then((res) => {
               axios.defaults.headers.authToken = res.result;
-              me.$router.push({name: 'ecardlist'})
+              me.$store.commit('LOGIN', me.loginForm)
+              me.$router.push({name: PRODUCT_LIST})
           })
 
         });
