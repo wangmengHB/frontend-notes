@@ -1,14 +1,21 @@
 <template lang="pug">
 div.login-page
     div.login-box
-        div.header 思必驰企业名片ADMIN登录
-            el-form(label-position="right" :model="loginForm" status-icon :rules="rules" ref="loginForm" label-width="80px" class="login-form")
-                el-form-item(label="用户名" prop="loginName")
+        div.header {{$t('LOGIN_TITLE')}}
+            el-form(
+                label-position="right" 
+                :model="loginForm" 
+                status-icon 
+                :rules="rules" 
+                ref="loginForm" 
+                label-width="80px" 
+                class="login-form")
+                el-form-item(:label="$t('USERNAME')" prop="loginName")
                     el-input(v-model="loginForm.loginName")
-                el-form-item(el-form-item label="密码" prop="loginPass")
-                    el-input(type="password" v-model="loginForm.loginPass")
+                el-form-item(el-form-item :label="$t('PASSWORD')" prop="loginPass")
+                    el-input(type="password" v-model="loginForm.loginPass" @keyup.enter.native="submitForm('loginForm')")
                 div.login-btn
-                    el-button(type="primary" @click="submitForm('loginForm')") 登录
+                    el-button(type="primary" @click.prevent="submitForm('loginForm')") {{$t('LOGIN')}}
 
 </template>
 
@@ -62,17 +69,17 @@ import {
 
 export default {
     data() {
-
+      let me = this;
       let validateName = (rule, value, callback) => {
           if (value === '') {
-              callback(new Error('用户名不能为空'))
+              callback(new Error(me.$t('USERNAME_CAN_NOT_BE_EMPTY')))
           } else {
               callback();
           }
       }
       let validatePass = (rule, value, callback) => {
           if (value === '') {
-              callback(new Error('密码不能为空'))
+              callback(new Error(me.$t('PASSWORD_CAN_NOT_BE_EMPTY')))
           } else {
               callback();
           }

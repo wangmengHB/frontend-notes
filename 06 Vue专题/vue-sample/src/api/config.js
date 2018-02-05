@@ -1,5 +1,5 @@
 import axios from 'axios'
-import indicator from './indicator.js'
+import {indicator} from '../util'
 import router from '../router'
 import {USER_LOGIN} from '../constant'
 
@@ -25,18 +25,6 @@ if (isDevEnv()) {
  **/
 axios.defaults.withCredentials = true;
 
-axios.interceptors.request.use(function (config) {
-	// indicator.showBusy()
-    // Do something before request is sent
-    return config;
-  }, function (error) {
-  	indicator.hideBusy()
-    // Do something with request error
-    return Promise.reject(error);
-  });
-
-
-
 axios.interceptors.response.use(
 	function (response) {
         indicator.hideBusy()
@@ -56,7 +44,6 @@ axios.interceptors.response.use(
         return Promise.reject(response.data.result);           
 	},
 	function (error) {
-		indicator.hideBusy()
 		indicator.error('服务器错误')
 		return Promise.reject(error);
 	}

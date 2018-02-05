@@ -38,8 +38,8 @@ import {
     getTplByType, 
     uploadTemplate, 
     deleteTemplate, 
-    indicator
 } from '../../api'
+import {indicator} from '../../util'
 export default {
     props: {
         templateType: {

@@ -13,6 +13,7 @@ import './assets/font/iconfont.css'
 import './assets/scss/app.scss'
 
 import components from '@/func_components'
+import i18n from './i18n'
 
 
 
@@ -32,6 +33,7 @@ new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   components: { App },
   template: '<App/>'
 })

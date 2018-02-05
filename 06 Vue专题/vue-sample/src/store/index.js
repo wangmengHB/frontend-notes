@@ -1,11 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import global from './modules/global'
 import md5 from 'md5'
 
 Vue.use(Vuex)
-
-const debug = process.env.NODE_ENV !== 'production'
 
 const state = {
     loginName: sessionStorage.getItem('loginName'),
@@ -21,7 +18,7 @@ const mutations = {
         sessionStorage.setItem('loginPass', state.loginPass);
     },
 
-    LOGOUT (state, {loginName, loginPass}) {
+    LOGOUT (state) {
         state.loginName = '';
         state.loginPass = '';
         sessionStorage.removeItem('loginName');
@@ -34,10 +31,9 @@ const mutations = {
 
 }
 
-
+const debug = process.env.NODE_ENV !== 'production'
 export default new Vuex.Store({
     state,
     mutations,
     strict: debug,
-    // plugins: debug? []
 })

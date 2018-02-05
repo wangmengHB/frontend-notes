@@ -1,55 +1,26 @@
 <template lang="pug">
 div.login-page
     div.login-box
-        div.header 思必驰企业名片ADMIN登录
-            el-form(label-position="right" :model="passForm" status-icon :rules="rules" ref="passForm" label-width="80px" class="login-form")
+        div.header {{$t('LOGIN_TITLE')}}
+            el-form(
+                label-position="right" 
+                :model="passForm" 
+                status-icon 
+                :rules="rules" 
+                ref="passForm" 
+                label-width="80px" 
+                class="login-form")
                 el-form-item(label="旧密码" prop="oldPass")
                     el-input(type="password" v-model="passForm.oldPass")
                 el-form-item(el-form-item label="新密码" prop="pass")
                     el-input(type="password" v-model="passForm.pass")
                 el-form-item(el-form-item label="确认密码" prop="checkPass")
-                    el-input(type="password" v-model="passForm.checkPass")
+                    el-input(type="password" v-model="passForm.checkPass" @keyup.enter.native="submit('passForm')")
                 div.login-btn
-                    el-button(type="primary" @click="submit('passForm')") 提交  
+                    el-button(type="primary" @click="submit('passForm')") {{$t('SUBMIT')}}  
 </template>
 
-<style scoped lang="stylus">
-.login-page
-    position absolute;
-    left 0;
-    right 0;
-    top 0;
-    bottom 0;
 
-    .login-box
-        margin 0 auto;
-        width 400px;
-        height 523px;
-        position absolute;
-        top 50%;
-        left 50%;
-        transform translateX(-50%) translateY(-50%);
-        box-shadow:0 1px 5px #ccc;
-        
-
-        .header
-            text-align center;
-            height 100px;
-            line-height 100px;
-            color black;
-            font-size 20px;
-            width 100%;
-        
-
-        .login-form 
-            margin 0 auto;
-            margin-top 20px;
-            padding 20px;
-
-            .login-btn 
-                margin-top 50px;
-                text-align center;
-</style>
 
 <script>
     import md5 from 'md5'
@@ -131,3 +102,41 @@ div.login-page
         }
     }    
 </script>
+
+<style scoped lang="stylus">
+.login-page
+    position absolute;
+    left 0;
+    right 0;
+    top 0;
+    bottom 0;
+
+    .login-box
+        margin 0 auto;
+        width 400px;
+        height 523px;
+        position absolute;
+        top 50%;
+        left 50%;
+        transform translateX(-50%) translateY(-50%);
+        box-shadow:0 1px 5px #ccc;
+        
+
+        .header
+            text-align center;
+            height 100px;
+            line-height 100px;
+            color black;
+            font-size 20px;
+            width 100%;
+        
+
+        .login-form 
+            margin 0 auto;
+            margin-top 20px;
+            padding 20px;
+
+            .login-btn 
+                margin-top 50px;
+                text-align center;
+</style>

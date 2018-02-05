@@ -1,5 +1,5 @@
 <template>
-    <el-table class="ecard-list"
+    <el-table class="product-list"
       :data="productList"
       ref='table'
       height="100%"
@@ -70,6 +70,7 @@
 
 <script>
     import {getProductList, switchProduct} from '../../api'
+    import {indicator} from '../../util'
 
     export default {
         data () {
@@ -93,6 +94,7 @@
             let {tableData, pageNum} = this.$data;
             let me = this;
             if (pageNum == 0) {
+                indicator.showBusy();
                 getProductList().then(function(data) {
                     me.$data.tableData = data.result;
                     me.$data.pageNum++;
@@ -155,7 +157,7 @@
 </script>
 
 <style scoped lang="scss">
-.ecard-list {
+.product-list {
     width: 100%;
     height: 100%;
     overflow-x: hidden;

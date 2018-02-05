@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {root} from './config.js'
-import indicator from './indicator'
+import {indicator} from '../util'
 import md5 from 'md5'
 
 
