@@ -6,11 +6,11 @@ import {PRODUCT_LIST, ACCOUNT_LIST, TEMPLATE_MGMT, USER_LOGIN, CHANGE_PASS} from
 Vue.use(Router)
 
 const PageLayout = () => import('@/components/layout/PageLayout.vue')
-const ProductList = () => import('@/components/ProductList/ProductList.vue')
-const AccountList = () => import('@/components/AccountList/AccountList.vue')
-const TemplateMgmt = () => import('@/components/TemplateMgmt/TemplateMgmt.vue')
-const UserLogin = () => import('@/components/LoginPage/UserLogin.vue')
-const ChangePass = () => import('@/components/LoginPage/ChangePass.vue')
+const ProductList = () => import('@/components/pages/ProductList/ProductList.vue')
+const AccountList = () => import('@/components/pages/AccountList/AccountList.vue')
+const TemplateMgmt = () => import('@/components/pages/TemplateMgmt/TemplateMgmt.vue')
+const UserLogin = () => import('@/components/pages/LoginPage/UserLogin.vue')
+const ChangePass = () => import('@/components/pages/LoginPage/ChangePass.vue')
 
 const router = new Router({
   routes: [

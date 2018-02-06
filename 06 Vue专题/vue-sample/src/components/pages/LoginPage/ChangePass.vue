@@ -25,10 +25,10 @@ div.login-page
 <script>
     import md5 from 'md5'
     import {mapState} from 'vuex'
-    import {changePass} from '../../api'
+    import {changePass} from '../../../api'
     import {
         PRODUCT_LIST, ACCOUNT_LIST, TEMPLATE_MGMT, USER_LOGIN, CHANGE_PASS
-    } from '../../constant'
+    } from '../../../constant'
     export default {
         data () {
             let validateOldPass = (rule, value, callback) => {

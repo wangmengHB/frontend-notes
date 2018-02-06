@@ -38,8 +38,8 @@ import {
     getTplByType, 
     uploadTemplate, 
     deleteTemplate, 
-} from '../../api'
-import {indicator} from '../../util'
+} from '../../../api'
+import {indicator} from '../../../util'
 export default {
     props: {
         templateType: {
@@ -86,7 +86,7 @@ export default {
         submitUpload() {
             let templateType = this.templateType;
             let me = this;
-            
+            indicator.showBusy()
             this.$data.fileList.forEach(item => {
                 let file = new FormData();
                 file.append('fileName', item);

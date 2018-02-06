@@ -20,6 +20,72 @@ div.login-page
 </template>
 
 
+
+
+
+<script>
+import {userLogin} from '../../../api'
+import axios from 'axios'
+import {
+    PRODUCT_LIST, ACCOUNT_LIST, TEMPLATE_MGMT, USER_LOGIN, CHANGE_PASS
+} from '../../../constant'
+
+export default {
+    data() {
+      let me = this;
+      let validateName = (rule, value, callback) => {
+          if (value === '') {
+              callback(new Error(me.$t('USERNAME_CAN_NOT_BE_EMPTY')))
+          } else {
+              callback();
+          }
+      }
+      let validatePass = (rule, value, callback) => {
+          if (value === '') {
+              callback(new Error(me.$t('PASSWORD_CAN_NOT_BE_EMPTY')))
+          } else {
+              callback();
+          }
+      }
+
+      return {
+        loginForm: {
+          loginName: sessionStorage.getItem('loginName'),
+          loginPass: ''
+        },
+        rules: {
+          loginName: [
+              {validator: validateName, trigger: 'blur'}
+          ],
+          loginPass: [
+              {validator: validatePass, trigger: 'blur'}
+          ]
+        }
+      };
+    },
+    methods: {
+      submitForm(formName) {
+        let me = this;
+        this.$refs[formName].validate((valid) => {      
+          if (!valid) {
+              return false;
+          }
+          userLogin(this.loginForm).then((res) => {
+              axios.defaults.headers.authToken = res.result;
+              me.$store.commit('LOGIN', me.loginForm)
+              me.$router.push({name: PRODUCT_LIST})
+          })
+
+        });
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
+      }
+    }
+  }
+    
+</script>
+
 <style scoped lang="stylus">
 .login-page
     position absolute;
@@ -58,67 +124,3 @@ div.login-page
                 text-align center;
             
 </style>
-
-
-<script>
-import {userLogin} from '../../api'
-import axios from 'axios'
-import {
-    PRODUCT_LIST, ACCOUNT_LIST, TEMPLATE_MGMT, USER_LOGIN, CHANGE_PASS
-} from '../../constant'
-
-export default {
-    data() {
-      let me = this;
-      let validateName = (rule, value, callback) => {
-          if (value === '') {
-              callback(new Error(me.$t('USERNAME_CAN_NOT_BE_EMPTY')))
-          } else {
-              callback();
-          }
-      }
-      let validatePass = (rule, value, callback) => {
-          if (value === '') {
-              callback(new Error(me.$t('PASSWORD_CAN_NOT_BE_EMPTY')))
-          } else {
-              callback();
-          }
-      }
-
-      return {
-        loginForm: {
-          loginName: '',
-          loginPass: ''
-        },
-        rules: {
-          loginName: [
-              {validator: validateName, trigger: 'blur'}
-          ],
-          loginPass: [
-              {validator: validatePass, trigger: 'blur'}
-          ]
-        }
-      };
-    },
-    methods: {
-      submitForm(formName) {
-        let me = this;
-        this.$refs[formName].validate((valid) => {      
-          if (!valid) {
-              return false;
-          }
-          userLogin(this.loginForm).then((res) => {
-              axios.defaults.headers.authToken = res.result;
-              me.$store.commit('LOGIN', me.loginForm)
-              me.$router.push({name: PRODUCT_LIST})
-          })
-
-        });
-      },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
-      }
-    }
-  }
-    
-</script>

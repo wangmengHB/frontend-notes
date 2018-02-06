@@ -31,7 +31,8 @@
 </template>
 
 <script>
-    import {getUserList} from '../../api'
+    import {getUserList} from '../../../api'
+    import {indicator} from '../../../util'
     export default {
         data () {
             return {
@@ -45,6 +46,7 @@
             let {tableData, pageNum} = this.$data;
             let me = this;
             if (pageNum == 0) {
+                indicator.showBusy()
                 getUserList().then(function(data) {
                     me.$data.tableData = data.result;
                 });

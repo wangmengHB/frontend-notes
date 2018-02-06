@@ -69,8 +69,8 @@
 
 
 <script>
-    import {getProductList, switchProduct} from '../../api'
-    import {indicator} from '../../util'
+    import {getProductList, switchProduct} from '../../../api'
+    import {indicator} from '../../../util'
 
     export default {
         data () {

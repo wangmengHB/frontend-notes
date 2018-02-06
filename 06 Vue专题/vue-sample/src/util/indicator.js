@@ -8,15 +8,14 @@ class Indicator {
     }
 
     showBusy() {
-        let me = this;
-        setTimeout(() => {
-            this.loadingService = vm.$loading.service({
-                text: '拼命加载中...',
-                spinner: 'el-icon-loading',
-                background: 'rgba(0, 0, 0, 0.5)'
-            });
-        }, 0)
-        
+        let me = this;       
+        me.loadingService = vm.$loading.service({
+            lock: true,
+            target: '#app',
+            text: '拼命加载中...',
+            spinner: 'el-icon-loading',
+            background: 'rgba(0, 0, 0, 0.5)'
+        });        
     }
 
     hideBusy() {

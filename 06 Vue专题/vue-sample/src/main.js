@@ -12,7 +12,7 @@ import './assets/font/iconfont.js'
 import './assets/font/iconfont.css'
 import './assets/scss/app.scss'
 
-import components from '@/func_components'
+import components from '@/components/common'
 import i18n from './i18n'
 
 
