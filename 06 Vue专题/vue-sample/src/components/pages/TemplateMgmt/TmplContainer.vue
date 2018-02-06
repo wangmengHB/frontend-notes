@@ -1,35 +1,24 @@
-<template>
-  <div class="tmpl-container">
-      <div class="container">
-          <div class="item" v-for="tpl in tpls" :key="tpl.id">
-            <img src="./file.png" @click="download(tpl.templateUrl)"/>
-            <div class="title">
-                {{tpl.templateName}}
-            </div>
-            <div class="close" @click="deleteTemplate(tpl)">
-                <i class="el-icon-close"></i>
-            </div>
-          </div>
-      </div>
-      
-      <div class="upload">
-        <el-button size="small" type="primary" @click="chooseFile">选取文件</el-button>
-        <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
-          <input type="file" ref="input" @change="handleChange" accept=".xls,.xlsx"/>
-          <div class='upload_list_wrapper pt10'>
-            <ul class='files_list'>
-                <li v-for='(item,index) in fileList' :key="item.name">
-                    <i class='el-icon-document icon'></i>
-                    <span>{{item.name}}</span>
-                    <i class='el-icon-success r mr10'></i>
-                    <i class='el-icon-close r mr10' @click='deleteItem(index)'></i>				
-                </li>
-            </ul>
-        </div>
-      </div>
+<template lang="pug">
+    div.tmpl-container
+        div.container
+            div.item(v-for="tpl in tpls" :key="tpl.id")
+                img(src="./file.png" @click="download(tpl.templateUrl)")
+                div.title {{tpl.templateName}}
+                div.close(@click="deleteTemplate(tpl)")
+                    i.el-icon-close
+            
+        div.upload
+            el-button(size="small" type="primary" @click="chooseFile") 选取文件
+            el-button(style="margin-left: 10px;" size="small" type="success" @click="submitUpload") 上传到服务器
+            input(type="file" ref="input" @change="handleChange" accept=".xls,.xlsx")
+            div.upload_list_wrapper.pt10
+                ul.files_list
+                    li(v-for='(item,index) in fileList' :key="item.name")
+                        i.el-icon-document.icon
+                        span {{item.name}}
+                        i.el-icon-success.r.mr10
+                        i.el-icon-close.r.mr10(@click='deleteItem(index)')
 
-
-  </div>
 </template>
 
 
@@ -55,8 +44,7 @@ export default {
     },
     data () {
         return {
-            tpls: [
-            ],
+            tpls: [],
             fileList: []
         }
     },
