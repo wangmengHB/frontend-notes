@@ -86,6 +86,9 @@ export default {
         submitUpload() {
             let templateType = this.templateType;
             let me = this;
+            if (this.$data.fileList.length == 0) {
+                return;
+            }
             indicator.showBusy()
             this.$data.fileList.forEach(item => {
                 let file = new FormData();
