@@ -1,13 +1,51 @@
 <style lang="less">
 .calclator {
-    border: solid 1px black;
-    // margin: 10rpx;
-    width: 100%;
-    height: 70vh;
+    margin: 2vh 0;
+    width: 100vw;
+    font-size: 25px;
     .result {
-        height: 20%;
-        line-height: 20%;
-
+        margin:0 9vw;
+        width: 82vw;
+        height: 14vh;
+        
+        
+        box-sizing: border-box;        
+        border: solid 2vw goldenrod;
+        .accumulate {
+            text-align: left;
+            padding: 0 5vw;
+            font-size: 4vh;
+            height: 4vh;
+            line-height: 4vh;
+            color: gray;
+        }       
+        .input-box {
+            text-align: right;
+            height: 10vh;
+            line-height: 10vh;
+            padding: 0 5vw;
+            font-size: 6vh;
+        }
+    }
+    .keyboard {
+        box-sizing: border-box; 
+        margin:0 9vw;
+        width: 82vw;
+        text-align: center;
+        border: solid 1vw goldenrod;
+        .item {
+            width:18vw;
+            height: 15vh;
+            line-height: 15vh;
+            display: inline-block;
+            vertical-align: middle;
+            border: solid 1vw goldenrod;
+            color: black;
+        }
+        .active {
+            background-color: goldenrod;
+            color: white;
+        }
     }
 }
 
@@ -18,8 +56,26 @@ view.container
     view.doc-title 简单的计算器
     view.zan-panel
         view.calclator 
-            view.result 00000
+            view.result
+                view.accumulate {{accumulate + ' ' +operator}}
+                view.input-box {{inputNum}}
             view.keyboard
+                view.item(hover-class="active" @tap="inputNum(7)") 7
+                view.item(hover-class="active" @tap="inputNum(8)") 8
+                view.item(hover-class="active" @tap="inputNum(9)") 9
+                view.item(hover-class="active" @tap="calculate('+')") +
+                view.item(hover-class="active" @tap="inputNum(4)") 4
+                view.item(hover-class="active" @tap="inputNum(5)") 5
+                view.item(hover-class="active" @tap="inputNum(6)") 6
+                view.item(hover-class="active" @tap="calculate(-)") -
+                view.item(hover-class="active" @tap="inputNum(1)") 1
+                view.item(hover-class="active" @tap="inputNum(2)") 2
+                view.item(hover-class="active" @tap="inputNum(3)") 3
+                view.item(hover-class="active" @tap="calculate('x')") x
+                view.item(hover-class="active" @tap="inputNum(0)") 0
+                view.item(hover-class="active" @tap="clear") AC
+                view.item(hover-class="active" @tap="calculate('/')") /
+                view.item(hover-class="active" @tap="calculate('=')") =
 
 
 </template>
@@ -30,8 +86,50 @@ import wepy from 'wepy'
 export default class Calculator extends wepy.page {
   config = {}
   components = {}
-  data = {}
-  methods = {}
+  data = {
+      accumulate: '',
+      inputNum: 0,
+      operator: ''
+  }
+  methods = {
+    inputNum (num) {
+        let input = this.inputNum + '' + num;
+        this.inputNum = Number(input);
+    },
+    calculate (operator) {
+        
+
+        if (operator !== '=') {
+            this.accumulate = Number(this.inputNum);
+            this.operator = operator;
+            this.inputNum = 0;
+            return;
+        }
+        
+        switch (this.operator) {
+            case '+':
+                this.inputNum = this.accumulate + this.inputNum;
+                break;
+            case '-':
+                this.inputNum = this.accumulate - this.inputNum;
+                break;
+            case '/':
+                this.inputNum = this.accumulate / this.inputNum;
+                break;
+            case 'x':
+                this.inputNum = this.accumulate * this.inputNum;
+                break;
+
+        }
+        this.accumulate = '';
+        this.operator = ''
+    },
+    clear () {
+        this.operator = '';
+        this.inputNum = 0;
+        this.accumulate = '';
+    }
+  }
   onLoad() {}
 }
 

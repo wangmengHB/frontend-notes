@@ -90,8 +90,7 @@ export default class extends wepy.app {
       return this.globalData.userInfo
     }
     let res = await wepy.getUserInfo();
-    this.globalData.userInfo = res.userInfo;
-    return this.globalData.userInfo
+    return this.globalData.userInfo = res.userInfo;
   }
 }
 </script>
