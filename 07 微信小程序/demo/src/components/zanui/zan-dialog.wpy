@@ -1,0 +1,66 @@
+<style lang="less">
+.zan-dialog__mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+}
+
+.zan-dialog__container {
+  position: fixed;
+  bottom: 0;
+  width: 750rpx;
+  background: white;
+  transform: translateY(100%);
+  z-index: 11;
+}
+
+.zan-dialog--show .zan-dialog__mask {
+  display: block;
+}
+</style>
+<template>
+  <view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
+    <view class="zan-dialog__mask" bindtap="toggleDialog" />
+    <view animation="{{animationData}}" class="zan-dialog__container">
+      <view style="padding: 100px 0; text-align: center;">{{content}}</view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+
+export default class zanDialog extends wepy.component {
+  props = {}
+  data = {
+    showDialog: false,
+    content: '',
+    animationData: {}
+  }
+  methods = {
+    toggleDialog({ content = '' }, event) {
+      console.log('showZanDialogs', content)
+      this.content = content
+      this.showDialog = !this.showDialog
+      let animation = wepy.createAnimation({
+        duration: 400,
+        timingFunction: 'ease'
+      })
+      this.animation = animation
+      wx.createSelectorQuery()
+        .select('.zan-dialog__container')
+        .boundingClientRect((rect) => {
+          this.showDialog
+            ? animation.translateY().step()
+            : animation.translateY(rect.height).step()
+          this.animationData = animation.export()
+          this.$apply()
+        }).exec()
+    }
+  }
+}
+</script>

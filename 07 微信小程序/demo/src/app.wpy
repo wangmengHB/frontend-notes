@@ -1,0 +1,97 @@
+<style lang="less">
+@import './style/zanui/index.wxss';
+.container {
+  background: #F9F9F9;
+  overflow: hidden;
+  min-width: 100vh;
+  box-sizing: border-box;
+}
+
+.container::before {
+  position: fixed;
+  top: 0;
+  left: 0;
+  content: ' ';
+  width: 100%;
+  height: 1rpx;
+  background-color: #e2e2e2;
+  z-index: 5;
+}
+
+.doc-title {
+  font-size: 25px;
+  line-height: 25px;
+  color: #666;
+  padding: 15px 0;
+  margin: 20px 15px;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+</style>
+
+<script>
+import wepy from 'wepy'
+import 'wepy-async-function'
+
+import { setStore } from 'wepy-redux'
+import configStore from './store'
+
+const store = configStore()
+setStore(store)
+
+export default class extends wepy.app {
+  config = {
+    pages: [
+      // 'pages/index',
+      'pages/home',
+      'pages/calculator'
+    ],
+    window: {
+      navigationBarBackgroundColor: '#FAFAFA',
+      navigationBarTextStyle: 'black',
+      navigationBarTitleText: 'M-DEMO',
+      backgroundTextStyle: 'dark',
+      backgroundColor: '#f9f9f9'
+    },
+    debug: true,
+    networkTimeout: {
+      'request': 10000,
+      'connectSocket': 10000,
+      'uploadFile': 10000,
+      'downloadFile': 10000
+    }
+  }
+
+  globalData = {
+    userInfo: null
+  }
+
+  constructor () {
+    super()
+    this.use('requestfix')
+    this.use('promisify')
+  }
+
+  onLaunch() {
+    console.log('app launch.')
+    wepy.getSystemInfo().then(data => {
+      if (data.SDKVersion < '1.4.0') {
+        wepy.showModal({ 
+          content: `SDKVersion最低要求1.4.0，当前版本${data.SDKVersion}`, 
+          title: '微信版本过低' 
+        })
+      }
+    })
+  }
+
+  async getUserInfo() {
+    const me = this
+    if (this.globalData.userInfo) {
+      return this.globalData.userInfo
+    }
+    let res = await wepy.getUserInfo();
+    this.globalData.userInfo = res.userInfo;
+    return this.globalData.userInfo
+  }
+}
+</script>

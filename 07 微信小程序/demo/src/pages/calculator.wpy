@@ -1,0 +1,39 @@
+<style lang="less">
+.calclator {
+    border: solid 1px black;
+    // margin: 10rpx;
+    width: 100%;
+    height: 70vh;
+    .result {
+        height: 20%;
+        line-height: 20%;
+
+    }
+}
+
+</style>
+
+<template lang="pug">
+view.container
+    view.doc-title 简单的计算器
+    view.zan-panel
+        view.calclator 
+            view.result 00000
+            view.keyboard
+
+
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Calculator extends wepy.page {
+  config = {}
+  components = {}
+  data = {}
+  methods = {}
+  onLoad() {}
+}
+
+ 
+</script>
