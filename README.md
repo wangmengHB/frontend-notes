@@ -1,27 +1,17 @@
-# 前端开发指南
-## 大前端
-前端是一个很广的概念,并不仅仅只是表示Web. 
+# 前端开发指南 (in Progress)
+## 前端
+前端是一个广义的概念,并不仅仅只是表示Web. 
 前端更确切的定义应该是,数据的表现层.
 一切数据的表现层,即一切的客户端,都可以归结到前端领域.
-作为一名前端开发者,不应该把自己的领域仅仅只是局限于Web端的开发,应该把自己的兴趣点扩展到整个大前端. 
-PC端、android端、IOS、TV、VR、嵌入式的客户端等等,都属于前端的范畴.
-作为一名前端开发者, 一切客户端的问题,都应该得到我们的关注和研究.
-从大前端的整体发展趋势来看,混合Web应用终将一统客户端的江湖:
-1. 微软主推的PC端客户端WPF语言,从其特征上来说,完全就是一个 js + css + html 的变种.
-2. MFC程序几乎消亡, 只有性能要求极高,比如图像处理客户端和大型桌游的应用可能还在使用MFC
-3. 移动端Native应用和Web混合应用优劣之争的关键点是,性能和用户体验的考虑. 对于开发效率上来说,web混合应用的开发效率是远胜于Native的, 这一点是没有争议的. 随着5G的到来以及移动设备的性能提升,除了游戏以外的大部分应用, 终将会是Web混合架构.
-4. 微信小程序和支付宝小程序,本质上就是一个Web app.
+作为一名前端开发者,不应该把自己的领域仅仅只是局限于Web端的开发,应该把自己的兴趣点扩展到整个前端领域：web端，移动应用，桌面端，微信和支付宝小程序等等. 
+一切客户端的问题,都是前端开发者应该关注和研究的问题.
+Javascript可以解决一切前端的问题.
 
-总而言之,大前端还是一个很有前景的方向,有很多工作都值得深入做下去, 在未来20年的软件产业中,前端开发都会有自己的一席之地.
-
-
-## 前端的技术变化
-过去10年,前端的发展非常快,有很多技术出现,同时也有很多技术被淘汰
-已经淘汰的:
-Angular1, knockout.js, ExtJs, ...
-即将被淘汰的:
-lodash, jquery, ...
-目前最主流技术的代表是React和Vue.
+## javascript在前端的解决方案
+1. 跨平台的桌面端解决方案：Electron
+2. 移动端的解决方案：Weex, react-native
+3. 前端应用框架：Vue, React
+4. 微信和支付宝小程序的框架: wepy
 
 
 ## 前端开发者应该掌握的技能
@@ -35,7 +25,7 @@ lodash, jquery, ...
 * 工程配置:webpack, gulp, rollup, babel
 * 开发语言: javascript, ES6, ES7, ES8, typescript, ...
 * 样式语言: css, less, sass, css in module, stylus, postcss, ...
-* 基础类库: moment
+* 基础类库: moment, axios,
 * 数据结构:immutablejs
 * 设计模式:Redux, vuex, thunk, middleware, mixin
 * 路由管理:React-Router
@@ -47,7 +37,7 @@ lodash, jquery, ...
 
 PC端开发,对于前端开发者的要求有:
 * 开发语言:c++, c#, java
-* 框架: CEF(Chronium Embbeded Framework)
+* 框架: Electron, CEF(Chronium Embbeded Framework)
 
 Android和IOS端,对于前端开发者的要求有:
 * 开发语言: Java, Cotlin, Objective-C, Swift,
@@ -62,7 +52,12 @@ Android和IOS端,对于前端开发者的要求有:
 
 ## 本书概述
 
-本书的主要目的是,列出各个前端技能点和对应的,然后将其串联为一个技术图谱,供前端开发者做参考使用.
+本书的主要目的是,列出各个前端技能点和对应的,然后将其串联为一个技术图谱,供前端开发者做参考使用. 
+第一部分：技术基础, 第1-4章.
+第二部分：前端框架React和Vue入门, 第5-6章.
+第三部分：前端应用：第7-10章.
+第四部分：图形相关：第11章
+第五部分：前端开源源码解析：第12章.
 
 1. 工程配置技术:
     * npm
@@ -73,39 +68,32 @@ Android和IOS端,对于前端开发者的要求有:
     * 闭包原理
     * 原型链原理
     * 多变的this 
-    * ES6
-    * ES7
-    * ES8
+    * ES6, ES7, ES8, ES.next
     * typescript
 3. css部分: 
     * 选择器和继承
     * 基本布局
     * sass 
     * postcss
-4. 数据结构和函数式编程: immutableJS
+    * stylus
+    * html模块语言：pug
+4. 数据结构和设计模式:
+    * 单元测试和ESLint
 5. React技术栈:
     * React基础 
     * Component, PureComponent, function Component
     * Redux, thunk, immutable 单向数据流
     * React-Router
 6. Vue专题
-7. 移动端解决方案
+7. 微信和支付宝小程序
+8. 移动端开发
     * PhoneGap
     * React Native
-8. 桌面端解决方案：Electron
-9. 单元测试和ESLint
-10. 图形相关: SVG, WebGL, Canvas, 地图
-11. Web应用和外壳的桥接:
-    * 与C++代码的交互:CEF
-    * 与IOS代码的交互: JavascriptBridge
-12. 前端开源库的源码解析:
-    * jquery
-    * lodash
-    * redux
-    * redux-thunk
-    * react-router
-    * react-redux
-13. 工程实践总结
+    * Weex
+9. 桌面端解决方案：Electron
+10. 构建网站
+11. 图形相关: SVG, WebGL, Canvas, 地图
+12. 前端开源库的源码解析
 
 
 未完待续...
