@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+<head>
+
+</head>
+<body>
+<script>
+
+class Watcher {
+    constructor (renderFn) {
+        this.deps = []
+        this.renderFn = renderFn
+    }
+
+    get () {
+        pushTarget(this)
+        this.renderFn()
+        popTarget()
+    }
+    
+    addDep (dep) {
+        if (this.deps.indexOf(dep) === -1) {
+            this.deps.push(dep)
+            dep.addSub(this)
+        }
+    }
+
+    update () {
+        this.get()
+    }
+
+    teardown () {
+        let i = this.deps.length
+        while(i--) {
+            this.deps[i].removeSub(this)
+        }
+        this.deps = []
+    }
+
+}
+
+class Dep {
+    constructor () {
+        this.subs = []
+    }
+
+    addSub (sub) {
+        this.subs.push(sub)
+    }
+
+    removeSub (sub) {
+        let index = this.subs.indexOf(sub)
+        if (index > -1) {
+            this.subs.splice(index, 1)
+        }
+    }
+
+    depend () {
+        if (Dep.target) {
+            Dep.target.addDep(this)
+        }
+    }
+
+    notify () {
+        this.subs.forEach( watcher => watcher.update())
+    }
+
+}
+
+Dep.target = null
+const targetStack = []
+
+function pushTarget (_target) {
+  if (Dep.target) {
+      targetStack.push(Dep.target)
+  } 
+  Dep.target = _target
+}
+
+function popTarget () {
+  Dep.target = targetStack.pop()
+}
+
+
+
+function observe (value) {
+    if (value === null || typeof value !== 'object') {
+        return
+    }
+    let ob = new Observer(value)
+    return ob
+}
+
+class Observer {
+    constructor (value) {
+        this.value = value
+        this.dep = new Dep()
+        if (Array.isArray(value)) {
+            // this.observeArray(value)
+        } else {
+            this.walk(value)
+        }
+    }
+    walk (obj) {
+        const keys = Object.keys(obj)
+        for (let i = 0; i < keys.length; i++) {
+            defineReactive(obj, keys[i], obj[keys[i]])
+        }
+    }
+
+}
+
+
+const defineReactive = (obj, key, val, shallow = false) => {
+    const property = Object.getOwnPropertyDescriptor(obj, key)
+
+    // cater for pre-defined getter/setters
+    const getter = property && property.get
+    const setter = property && property.set
+
+    if (getter || setter) {
+        console.log('has getter or setter')
+    }
+
+
+
+    const dep = new Dep()
+    let childOb = !shallow && observe(val)
+
+    Object.defineProperty(obj, key, {
+        enumerable: true,
+        configurable: true,
+        get: function reactiveGetter () {
+            if (Dep.target) {
+                dep.depend()
+                if (childOb) {
+                    childOb.dep.depend()
+                }
+            }
+            return val
+        },
+        set: function reactiveSetter (newVal) {
+            if (newVal === val) {
+                return
+            }
+            val = newVal
+            childOb = !shallow && observe(newVal)
+            dep.notify()
+        }
+    })
+}
+
+
+
+var data = {
+    x: {
+        y: {
+            z: 1
+        }
+    }
+}
+
+
+var a = observe(data)
+
+var render = function () {
+    console.log('data: ' + data.x.y.z)
+}
+
+
+var watcher = new Watcher(render)
+
+
+
+
+
+
+</script>
+    
+</body>
+</html>
