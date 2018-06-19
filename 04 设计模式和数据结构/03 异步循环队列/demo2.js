@@ -27,7 +27,7 @@ const runSubTask = (msg, resolve, reject) => {
 }
 
 
-let observableOnce = function (val) {
+let simpleObservable = function (val) {
     let value = val;
     let fn = null;
 
@@ -38,14 +38,16 @@ let observableOnce = function (val) {
         if (newVal !== value) {
             // notify the changes
             if (typeof fn === 'function') {
-                fn(newVal, value)
-                fn = null
+                let oldVal = value, nextVal = newVal
+                setTimeout(() => {
+                    fn(nextVal, oldVal)
+                }, 0)           
             }
             value = newVal
         }
         return value
     }
-    ob.once = function (callback) {
+    ob.subscribe = function (callback) {
         fn = callback
     }
     return ob
@@ -58,20 +60,7 @@ class AutoTaskMgr {
     constructor() {
         this._store = []
         this._index = 0
-        this._isSubTaskRunning = observableOnce(false)
-        
-
-        function isShutDown(newVal, oldVal) {
-            if (status === OFF && newVal === false) {
-                console.log('this is forced shut down')
-                setTimeout(() => {
-                    status = ON
-                    this.run()
-                }, 10000);
-            }
-        }
-
-        
+        this._isSubTaskRunning = simpleObservable(false)        
     }
 
     add(task) {
@@ -94,14 +83,8 @@ class AutoTaskMgr {
         }
 
         curTask().then(() => {
-            if (status !== ON) {
-                this._isSubTaskRunning(false)
-                this._index++
-                return
-            }
             this._isSubTaskRunning(false)
-            this._index++
-            
+            this._index++           
             this.run()
         })
         this._isSubTaskRunning(true)
@@ -119,11 +102,11 @@ class AutoTaskMgr {
 
     stopThenRun () {
         status = OFF
-        console.log('stop is called!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-        if (this._isSubTaskRunning === false) {
+        console.log('STOP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        if (this._isSubTaskRunning() === false) {
             this.start()
         } else {
-            this._isSubTaskRunning.once(function (isSubTaskRunning) {
+            this._isSubTaskRunning.subscribe(function (isSubTaskRunning) {
                 if (status === OFF && isSubTaskRunning === false) {
                     this.start()
                 }
