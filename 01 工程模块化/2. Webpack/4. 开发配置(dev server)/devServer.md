@@ -47,8 +47,18 @@ This option broadcasts the server via ZeroConf networking on start.
 一切服务都启用gzip压缩.
 
 
-## contentBase
-## disableHostCheck
+## contentBase [boolean|string|array]
+告诉服务器从哪里提供内容，只有在你想要提供静态文件时才需要.
+devServer.publicPath将用于确定应该从哪里提供bundle，并且此选项优先.
+默认情况下，将使用当前工作目录作为提供内容的目录.推荐使用绝对路径.
+也可以从多个目录提供内容:
+```js
+contentBase: [path.join(__dirname, "public"), path.join(__dirname, "assets")]
+```
+
+## disableHostCheck [boolean]
+不推荐禁用Host检查. 因为app容易遭受 DNS rebinding attack.
+
 ## filename
 ## headers
 ## historyApiFallback
