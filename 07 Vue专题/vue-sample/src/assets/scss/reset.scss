@@ -1,0 +1,19 @@
+.el-table .el-table__header th{
+    position:static; /*firefox表头边框偏移bugfix*/
+}
+div.el-table__body-wrapper{
+    overflow-x:hidden; /*chrome横向滚动条bugfix*/
+}
+ul.el-menu{
+    border-right:none;
+}
+.resetInput.el-input{
+	input{
+		border:none;
+		border-radius:0;
+		&:focus{
+			box-shadow:0 0 0.5px 0.5px $base_blue;
+		}
+	}
+	
+}
