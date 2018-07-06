@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+</head>
+<body>
+<style>
+* {
+    box-sizing: border-box;
+}
+#star-six {
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid red;
+  position: relative;
+  border-radius: 30px;
+}
+#star-six:after11 {
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 100px solid red;
+  position: absolute;
+  content: "";
+  top: 30px;
+  left: -50px;
+}
+
+#borders {
+   position: relative;
+   z-index: 1;
+   padding: 60px;
+   border: 5px solid #f00;
+   background: #ff9600;
+}
+
+#borders:before,
+#borders:after {
+   content: "";
+   position: absolute;
+   z-index: -1;
+   top: 25px;
+   left: 25px;
+   right: 25px;
+   bottom: 25px;
+   border: 25px solid #ffea00;
+   background: #4aa929;
+}
+
+#borders:after {
+   top: 35px;
+   left: 35px;
+   right: 35px;
+   bottom: 35px;
+   border: 20px solid #00b4ff;
+   background: white;
+}
+
+</style>
+
+<div id="star-six">
+</div>
+<div>
+    another row
+</div>
+
+<div id="borders">
+    Hello 3 borders.
+</div>
+
+
+<div id="faux">
+    faux columnfdafskkkkkkkkkkkkkkkkkkkkkkkkkkkkfldsafjkdsjalkfjldkajkflda 
+</div>
+
+    
+</body>
+</html>
