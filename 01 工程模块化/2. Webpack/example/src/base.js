@@ -10,3 +10,8 @@ export function setEnv (val) {
 export function getEnv () {
     return __env
 }
+
+export default {
+    setEnv,
+    getEnv
+}
