@@ -1,4 +1,5 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 
 module.exports = {
@@ -19,7 +20,12 @@ module.exports = {
             },
         ]
     },
-    optimiaztion: {
+    optimization: {
         minimize: false,
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'webpack lazy load sample'
+        })
+    ]
 }
