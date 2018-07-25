@@ -24,7 +24,12 @@
     position: absolute;
     width: 200px;
     height: 100px;
+    display: block;
+    line-height: 100px;
+    text-align: center;
+    background: gray;
     z-index: 2;
+    cursor: pointer;
 }
 
 .countdown-button .cover {
@@ -56,7 +61,7 @@
     z-index: 3;   
 }
 
-.counting .cover:after{
+.counting .cover::after{
     animation: count10 10s;
 }
 
@@ -79,14 +84,14 @@
 
 
 <div class="countdown-button">
-    <button class="btn">Click</button>
+    <a class="btn">Click</a>
     <div class="cover"></div>
 </div>
 
 <hr/>
 
 <div class="countdown-button">
-    <button class="btn">Click</button>
+    <a class="btn">Click</a>
     <div class="cover"></div>
 </div>
 
