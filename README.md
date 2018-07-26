@@ -35,7 +35,7 @@
 * EsLint, Jest, Puppeter
 
 ### 4. 多端应用
-* web端：浏览器兼容, Mobile-First, Progressive Web Application(离线优先)
+* web端：Mobile-First, Progressive Web Application(离线优先)
 * 移动端: react native, weex, javascriptBridge
 * 小程序端: wepy, mpvue
 * 桌面端： Electron
@@ -52,16 +52,15 @@
 ## 本文概述
 
 本文的主要目的是,列出各个前端技能点和对应的,然后将其串联为一个技术图谱,供前端开发者做参考使用. 
-第一部分：技术基础, 第1-4章.
-第二部分：前端框架React和Vue入门, 第5-6章.
-第三部分：前端应用：第7-10章.
-第四部分：图形相关：第11章
-第五部分：前端开源源码解析：第12章.
+第一部分：技术基础, 第1-6章.
+第二部分：前端框架React和Vue入门, 第7-9章.
+第三部分：前端应用：第10-12章.
+第四部分：前端开源源码解析：第13章.
 
 1. 工程配置技术:
     * npm
     * webpack 
-    * babel 和 其他loader
+    * 工程自动化和部署
 2. Javascript部分:
     * 闭包原理
     * 原型链原理
@@ -71,27 +70,26 @@
 3. css部分: 
     * 选择器和继承
     * 基本布局
-    * sass 
-    * postcss
-    * stylus
+    * sass/postcss/stylus
     * html模块语言：pug
-4. 数据结构和设计模式:
-    * 单元测试和ESLint
-5. React技术栈:
-    * React基础 
-    * Component, PureComponent, function Component
+4. 数据结构和设计模式
+5. 浏览器和Http协议
+6. 图形相关
+
+7. React专题:
+    * React基础：Component, PureComponent, function Component
     * Redux, thunk, immutable 单向数据流
     * React-Router
-6. Vue专题
-7. 微信和支付宝小程序
-8. 移动端开发
+8. Vue专题
+9. 设计一套UI组件
+
+10. 微信和支付宝小程序
+11. 移动端开发
     * PhoneGap
     * React Native
     * Weex
-9. 桌面端解决方案：Electron
-10. 构建网站
-11. 图形相关: SVG, WebGL, Canvas, 地图
-12. 前端开源库的源码解析
+12. 桌面端解决方案：Electron
+13. 前端开源库的源码解析
 
 
 未完待续...
