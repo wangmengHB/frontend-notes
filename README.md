@@ -47,8 +47,6 @@
 说明：这些特定的问题并不是仅仅简单的只对应一个html元素或一个api，其内容是非常深的，
 比如，webgl并不只是一个canvas元素那么简单，会有很多很厚的书对其进行的讲解.
 
-
-
 ## 本文概述
 
 本文的主要目的是,列出各个前端技能点和对应的,然后将其串联为一个技术图谱,供前端开发者做参考使用. 
@@ -78,11 +76,10 @@
 
 7. React专题:
     * React基础：Component, PureComponent, function Component
-    * Redux, thunk, immutable 单向数据流
+    * Redux(单向数据流), thunk, immutable 
     * React-Router
 8. Vue专题
 9. 设计一套UI组件
-
 10. 微信和支付宝小程序
 11. 移动端开发
     * PhoneGap
