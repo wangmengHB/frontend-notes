@@ -1,9 +1,68 @@
 # 1. Object.create(proto, [propertiesObject])
-方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__
+创建一个新对象，该对象的__proto__指向使proto.
+propertiesObject参数可选, 表示创建完对象以后再对该对象进行Object.defineProperties。
+Object.create 的内部实现等价于
+```js
+function create (proto) {
+    function F() {}
+    F.prototype = proto
+    return new F()
+}
+```
+注意：早期的js继承util函数就通过这种方式实现的.
+
+```js
+let a = {} 
+// 等价于 let a = Object.create(Object.prototype)
+let b = Object.create({})
+let c = Object.create(null)
+```
+对象b和c的区别:
+1. 对象b的__proto__指向了{}, 而{}的__proto__又指向了Object.prototype. 所以对象b可以访问对象的基本方法.
+2. 对象c的__proto__指向了null, 所以对象c不能访问对象的基本方法.
 
 
 # 2. Object.assign(target, ...sources)
+将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
+对于对象类型值的属性，仅仅只是拷贝引用值.
+```js
+var obj = {
+  foo: 1,
+  get bar() {
+    return 2;
+  }
+};
 
+var copy = Object.assign({}, obj); 
+// { foo: 1, bar: 2 }
+// copy.bar的值来自obj.bar的getter函数的返回值 
+console.log(copy); 
+
+// 下面这个函数会拷贝所有自有属性的属性描述符
+function completeAssign(target, ...sources) {
+  sources.forEach(source => {
+    let descriptors = Object.keys(source).reduce((descriptors, key) => {
+      descriptors[key] = Object.getOwnPropertyDescriptor(source, key);
+      return descriptors;
+    }, {});
+
+    // Object.assign 默认也会拷贝可枚举的Symbols
+    Object.getOwnPropertySymbols(source).forEach(sym => {
+      let descriptor = Object.getOwnPropertyDescriptor(source, sym);
+      if (descriptor.enumerable) {
+        descriptors[sym] = descriptor;
+      }
+    });
+    Object.defineProperties(target, descriptors);
+  });
+  return target;
+}
+
+var copy = completeAssign({}, obj);
+console.log(copy);
+// { foo:1, get bar() { return 2 } }
+
+```
 
 # 3. Object.freeze(obj) | Object.isFrozen(obj)
 冻结一个对象, 并且返回该对象，冻结意思指的是:
@@ -25,8 +84,6 @@ dest === origin   // true
 # 4. Object.seal() | Object.isSealed()
 
 # 5. Object.preventExtensions() | Object.isExtensible()
-
-
 
 
 # 6. Object.entries() | Object.keys() | Object.values()
