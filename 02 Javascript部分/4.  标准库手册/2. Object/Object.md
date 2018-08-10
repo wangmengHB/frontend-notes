@@ -2,7 +2,10 @@
 方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__
 
 
-# 2. Object.freeze()
+# 2. Object.assign(target, ...sources)
+
+
+# 3. Object.freeze(obj) | Object.isFrozen(obj)
 冻结一个对象, 并且返回该对象，冻结意思指的是:
 1. 不能向这个对象添加新的属性，
 2. 不能修改其已有属性的值，
@@ -17,3 +20,23 @@ let dest = Object.freeze(origin)
 dest === origin   // true
 
 ```
+
+
+# 4. Object.seal() | Object.isSealed()
+
+# 5. Object.preventExtensions() | Object.isExtensible()
+
+
+
+
+# 6. Object.entries() | Object.keys() | Object.values()
+
+
+# 7. Object.defineProperty() | Object.defineProperties()
+
+
+# 8. Object.getOwnPropertyDescriptor() | Object.getOwnPropertyDescriptors()
+
+
+
+
