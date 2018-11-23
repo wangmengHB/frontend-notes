@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+</head>
+<body>
+<style>
+* {
+    box-sizing: border-box;
+}
+
+
+.countdown-button {
+    position: relative;
+    width: 200px;
+    height: 100px;
+}
+
+.countdown-button .btn{
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    display: block;
+    line-height: 100px;
+    text-align: center;
+    background: gray;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.countdown-button .cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    background: greenyellow;
+    z-index: 1;
+}
+
+.countdown-button .cover::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 200px;
+    height: 100px;
+    background: greenyellow;
+    content: "";
+    display: block;
+    text-align: center;
+    line-height: 100px;
+}
+
+.counting .cover{
+    z-index: 3;   
+}
+
+.counting .cover::after{
+    animation: count10 10s;
+}
+
+@keyframes count10 {
+    0% {content: '10'}
+    10% {content: '9'}
+    20% {content: '8'}
+    30% {content: '7'}
+    40% {content: '6'}
+    50% {content: '5'}
+    60% {content: '4'}
+    70% {content: '3'}
+    80% {content: '2'}
+    90% {content: '1'}
+    100% {content: '0'}
+}
+
+
+</style>
+
+
+<div class="countdown-button">
+    <a class="btn">Click</a>
+    <div class="cover"></div>
+</div>
+
+<hr/>
+
+<div class="countdown-button">
+    <a class="btn">Click</a>
+    <div class="cover"></div>
+</div>
+
+
+<script>
+var els = document.getElementsByClassName('countdown-button')
+for (var i = 0; i < els.length; i++) {
+    var el = els[i]
+    bindEl(el)
+}
+
+function bindEl(el) {
+    var btn = el.getElementsByClassName('btn')[0]
+    btn.addEventListener('click', function() {
+        el.classList.add('counting')
+        setTimeout(function() {
+            el.classList.remove('counting')
+        }, 10000)
+    })
+}
+
+
+</script>
+
+
+    
+</body>
+</html>
