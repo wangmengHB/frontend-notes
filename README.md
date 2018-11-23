@@ -1,21 +1,30 @@
-# 前端开发指南 (in Progress)
+# 前端笔记 (in Progress)
 ## 什么是前端
 前端是一个广义的概念, 一切数据的表现层（即客户端），都可以归结为前端，一切客户端的问题,都是前端开发者应该关注和研究的问题.
 前端的领域，并不仅仅只局限于web，移动客户端，跨平台桌面端，(微信和支付宝)小程序等等，都属于前端领域。
-web是前端领域最基础和核心的部分。 
+web是前端领域最基础和核心的部分。
+
+## 前端开发者需要解决的问题
+1. 传统的页面或组件的实现 (vue, react)
+2. web应用结构设计 (前端路由, 后端路由, ssr, pwa, 状态管理)
+3. 模板层部分（backend for frontend: nodejs, koa, egg）
+4. 数据可视化 (各类图表，主要使用SVG)
+5. 图像的处理 (全景图和VR等，主要使用canvas 2d 和 webgl)
+6. 声音的处理
+7. 视频的处理: 播放和编辑预览
+8. 地图的解决方案
+9. 移动端和小程序 （react-native，weex，wepy）
+10. 跨平台的桌面端 （Electron）
+11. node工具开发
+
+## 前端开发者需要具备的能力：
+1. 基础开发能力 (js/ts，css/less, html)
+2. 基础框架技能  (react, vue)
+3. 模块化和工程能力 （git，npm，babel，webpack，测试和自动化）
+4. 设计能力和环境知识 （设计模式，http，https，websocket，worker，cdn等）
+注：(非必需) 在处理多端解决方案问题，还需要掌握一定的原生开发技能。
 
 
-## js（或ts）的多端解决方案
-1. 跨平台的桌面端解决方案：Electron
-2. 移动端的解决方案：Weex, react-native
-3. 前端应用框架：Vue, React
-4. 微信和支付宝小程序的框架: wepy, mpvue
-
-## 前端开发者应该掌握的技能领域
-传统的web开发对于开发者的技能要求很简单:javascript,css,html.
-客观来说, javascript是一门很简单的语言,上手非常容易(精通还是需要花点时间), 总之上手简单,但是内容繁多。
-但是仅仅只是掌握这些技能,是不能够适应现代以及未来的前端开发需求.
-现代的前端开发对于开发者的要求越来越高,前端开发工作需要掌握的技能越来越多.
 
 ### 1. 语言基础
 * javascript, ES6(next), typescript
@@ -35,10 +44,6 @@ web是前端领域最基础和核心的部分。
 * EsLint, Jest, Puppeter
 
 
-## web的种类：
-1. spa
-2. 多页面应用
-3. ssr
 
 ### 4. 多端应用
 * web端：Mobile-First, Progressive Web Application(离线优先)
