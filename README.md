@@ -4,25 +4,26 @@
 前端的领域，并不仅仅只局限于web，移动客户端，跨平台桌面端，(微信和支付宝)小程序等等，都属于前端领域。
 web是前端领域最基础和核心的部分。
 
-## 前端开发者需要解决的问题
-1. 传统的页面或组件的实现 (vue, react)
-2. web应用结构设计 (前端路由, 后端路由, ssr, pwa, 状态管理)
-3. 模板层部分（backend for frontend: nodejs, koa, egg）
-4. 数据可视化 (各类图表，主要使用SVG)
-5. 图像的处理 (全景图和VR等，主要使用canvas 2d 和 webgl)
-6. 声音的处理
-7. 视频的处理: 播放和编辑预览
-8. 地图的解决方案
-9. 移动端和小程序 （react-native，weex，wepy）
-10. 跨平台的桌面端 （Electron）
-11. node工具开发
-
 ## 前端开发者需要具备的能力：
 1. 基础知识 (js/ts，css/scss/less, html/pug/jsonml/makdown)
 2. 基础框架技能  (react, redux, saga, vue, vuex, router, ssr)
 3. 模块化和工程能力 （git，npm，babel，webpack，puppeter, 测试和自动化）
 4. 设计能力和环境知识 （设计模式，http，https，websocket，worker，cdn等）
 注：(非必需) 在处理多端解决方案问题，还需要掌握一定的原生开发技能。
+
+
+## 前端开发者需要解决的问题
+5. 传统的页面或组件的实现 (vue, react)
+6. web应用结构设计 (前端路由, 后端路由, ssr, pwa, 状态管理)
+7. 模板层部分（backend for frontend: nodejs, koa, egg）
+8. 数据可视化 (各类图表，主要使用SVG)
+9. 图像的处理 (全景图和VR等，主要使用canvas 2d 和 webgl)
+10. 声音的处理
+11. 视频的处理: 播放和编辑预览
+12. 地图的解决方案
+13. 移动端和小程序 （react-native，weex，wepy）
+14. 跨平台的桌面端 （Electron）
+15. node工具开发
 
 
 
