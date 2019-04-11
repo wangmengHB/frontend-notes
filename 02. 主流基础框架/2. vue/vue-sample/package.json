@@ -1,5 +1,5 @@
 {
-  "name": "ecard-admin",
+  "name": "test project",
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "Meng <wangmeng_hb@163.com>",
@@ -77,8 +77,8 @@
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
-    "webpack-dev-server": "^2.9.1",
-    "webpack-merge": "^4.1.0"
+    "webpack-dev-server": "latest",
+    "webpack-merge": "latest"
   },
   "engines": {
     "node": ">= 6.0.0",
