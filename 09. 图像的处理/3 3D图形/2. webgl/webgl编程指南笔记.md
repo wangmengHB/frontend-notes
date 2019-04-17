@@ -14,3 +14,18 @@
 10. 高级技术
 
 着色器语言.
+
+51 - 501
+gl.clearColor(r, g, b, a)：设置gl全局的 clearColor.
+取值范围从 0.0 - 1.0 的浮点数。
+gl.clear(buffer):
+将指定缓冲区设定为预定的值。
+如果清空的是颜色缓冲区，那么将使用 gl.clearColor() 指定的值（作为预定值）。
+buffer:
+1. gl.COLOR_BUFFER_BIT, 颜色缓冲区，默认值（0.0， 0.0， 0.0， 0.0）, gl.clearColor(r,g,b,a)
+2. gl.DEPTH_BUFFER_BIT, 深度缓冲区, 默认值 1.0， gl.clearDepth(depth)
+3. gl.STANCIL_BUFFER_BIT, 模板缓冲区, 默认值 0， gl.clearStencil(s) 
+
+gl.clear(gl.COLOR_BUFFER_BIT) 使用 clear color 清空画布。
+
+
