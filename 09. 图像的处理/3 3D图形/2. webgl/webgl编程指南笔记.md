@@ -56,5 +56,7 @@ gl.POINTS, gl.LINES, gl.LINE_STRIP, gl.LINE_LOOP, gl.TRIANGLES, gl.TRIANGLE_STRI
 * program: gl.program, 它包含了两个着色器的程序对象
 * name: 指定想要获取其存储地址的 attribute 变量的名称。
 ## gl.vertexAttrib(1-4)f(a_Position, v0, v1, ...)
+## gl.vertexAttrib(1-4)fv(a_Position, [v0, v1, ...])
+从js中向着色器中的 attribute 变量，传入维度为 1 - 4的 float值数组。
 
-74 - 136 - 501
+82 - 136 - 501
