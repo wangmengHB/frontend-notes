@@ -20,13 +20,17 @@ webgl的坐标系和 `<canvas>` 绘图区的坐标系不同，（0.0，0.0，0.0
 其他方向需要动手需实验验证。
 
 # js 和 着色器的交互
-通过 attribute 类型变量传入顶点坐标，
-通过 uniform 类型变量传入变换矩阵，
+对于顶点着色器，通过 attribute 类型变量传入顶点坐标，通过 uniform 类型变量传入变换矩阵.
 在js中：
 ```js
 // 'a_Position' 是在着色器中定义的 Attribute 类型的变量名
 var a_Position = gl.getAttribLocation(gl.program, 'a_Position');    
 gl.vertexAttrib3f(a_Position, 0.0, 0.0, 0.0);   // 给顶点坐标赋值
+```
+对于片元着色器，通过 uniform (或varing) 类型变量传入颜色值。
+```js
+var u_FragColor = gl.getUniformLocation(gl.program, 'u_FragColor');
+gl.uniform4f(u_FragColor, 0.1, 0.2, 0.3, 1.0);
 ```
 
 # 着色器内置变量
@@ -58,5 +62,9 @@ gl.POINTS, gl.LINES, gl.LINE_STRIP, gl.LINE_LOOP, gl.TRIANGLES, gl.TRIANGLE_STRI
 ## gl.vertexAttrib(1-4)f(a_Position, v0, v1, ...)
 ## gl.vertexAttrib(1-4)fv(a_Position, [v0, v1, ...])
 从js中向着色器中的 attribute 变量，传入维度为 1 - 4的 float值数组。
+## gl.getUniformLocation(program, name)
+## gl.uniform(1-4)f
+## gl.uniform(1-4)fv
 
-82 - 136 - 501
+
+94 - 136 - 501
