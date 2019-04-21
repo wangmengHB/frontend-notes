@@ -1,14 +1,11 @@
-136 -183 颜色和纹理
+
 
 2. webgl入门
 3. 绘制和变换三角形
 4. 高级变换和动画基础
 5. 颜色和纹理
 
-7. 进入三维世界
-8. 光照
-9. 层次模型
-10. 高级技术
+
 
 着色器语言.
 
@@ -32,6 +29,16 @@ gl.vertexAttrib3f(a_Position, 0.0, 0.0, 0.0);   // 给顶点坐标赋值
 var u_FragColor = gl.getUniformLocation(gl.program, 'u_FragColor');
 gl.uniform4f(u_FragColor, 0.1, 0.2, 0.3, 1.0);
 ```
+webgl 提供了一种缓冲区机制，缓冲区对象 buffer object, 可以一次性向着色器传入多个坐标。
+缓冲区对象是webgl中的一块内存区域。
+使用缓冲区对象向着色器中传入数据的步骤：
+1. 创建缓冲区对象，gl.createBuffer()
+2. 绑定缓冲区对象，gl.bindBuffer()
+3. 将数据写入缓冲区对象，gl.bindData()
+4. 将缓冲区对象分配给一个 attribute 类型的变量，gl.vertexAttribPointer()
+5. 开启 attribute 变量，gl.enableVertexAttribArray()
+
+
 
 # 着色器内置变量
 gl_Position:
@@ -67,4 +74,15 @@ gl.POINTS, gl.LINES, gl.LINE_STRIP, gl.LINE_LOOP, gl.TRIANGLES, gl.TRIANGLE_STRI
 ## gl.uniform(1-4)fv
 
 
-94 - 136 - 501
+100 - 138 
+
+
+
+139 - 160 矩阵
+161 -213 颜色和纹理
+247 - 501 
+7. 进入三维世界
+8. 光照
+9. 层次模型
+10. 高级技术
+
