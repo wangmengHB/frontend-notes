@@ -81,6 +81,8 @@ gl.clear(gl.COLOR_BUFFER_BIT) 使用 clear color 清空画布。
 ## gl.getUniformLocation(program, name)
 ## gl.uniform(1-4)f
 ## gl.uniform(1-4)fv
+## gl.uniformMatrix(1-4)fv(location, transpose, matrix)
+
 ## gl.createBuffer() | gl.deleteBuffer(buffer)
 ## gl.bindBuffer(target, buffer)
 将缓冲区对象绑定到 webgl 系统中已经存在的 target 上。 target 表示缓冲区对象的用途。
@@ -122,5 +124,5 @@ offset: 指定缓冲区对象中的偏移量，以字节为单位，即 attribut
 10. 高级技术
 
 
-116 - 138 139 - 160 矩阵
+135 - 138 139 - 160 矩阵
 
