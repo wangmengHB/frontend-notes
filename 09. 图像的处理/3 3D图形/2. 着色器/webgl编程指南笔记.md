@@ -81,7 +81,9 @@ gl.clear(gl.COLOR_BUFFER_BIT) 使用 clear color 清空画布。
 ## gl.getUniformLocation(program, name)
 ## gl.uniform(1-4)f
 ## gl.uniform(1-4)fv
-## gl.uniformMatrix(1-4)fv(location, transpose, matrix)
+## gl.uniformMatrix(1-4)fv(location, transpose, array)
+transpose: 表示是否转置矩阵。wegl没有提供转置的方法，所以必需为false。
+array: 4*4 类型化数组。
 
 ## gl.createBuffer() | gl.deleteBuffer(buffer)
 ## gl.bindBuffer(target, buffer)
@@ -124,5 +126,5 @@ offset: 指定缓冲区对象中的偏移量，以字节为单位，即 attribut
 10. 高级技术
 
 
-135 - 138 139 - 160 矩阵
+139 - 148 - 160 矩阵
 
