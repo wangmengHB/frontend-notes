@@ -1,6 +1,6 @@
 // JointModel.js (c) 2012 matsuda
 // Vertex shader program
-var VSHADER_SOURCE =
+const VSHADER_SOURCE =
   'attribute vec4 a_Position;\n' +
   'attribute vec4 a_Normal;\n' +
   'uniform mat4 u_MvpMatrix;\n' +
@@ -17,7 +17,7 @@ var VSHADER_SOURCE =
   '}\n';
 
 // Fragment shader program
-var FSHADER_SOURCE =
+const FSHADER_SOURCE =
   '#ifdef GL_ES\n' +
   'precision mediump float;\n' +
   '#endif\n' +
