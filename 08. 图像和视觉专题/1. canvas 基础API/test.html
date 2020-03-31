@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+
+<script>
+var canvas = document.getElementById('canvas'); 
+var ctx = canvas.getContext('2d', { alpha: true});
+
+
+var ctx2 = canvas.getContext('2d', { alpha: false});
+/* ctx2.fillStyle = 'rgba(0, 255, 255, 0.5)';
+ctx2.fillRect(20, 20, 120, 120);
+
+*/
+
+drawFace(ctx2);
+
+
+
+function drawFace(ctx) {
+  ctx.save();
+  ctx.beginPath();
+  ctx.strokeStyle = "rgb(255,165,0)";
+  ctx.lineWidth = 10;
+
+  ctx.arc(75,75,50,0,Math.PI*2,true); // 绘制
+  ctx.moveTo(110,75);
+  ctx.arc(75,75,35,0,Math.PI,false);   // 口(顺时针)
+  ctx.moveTo(65,65);
+  ctx.arc(60,65,5,0,Math.PI*2,true);  // 左眼
+  ctx.moveTo(95,65);
+  ctx.arc(90,65,5,0,Math.PI*2,true);  // 右眼
+  ctx.stroke();
+  ctx.restore();
+
+}
+
+ 
+
+
+
+</script>
+
+
+</body>
+</html>
