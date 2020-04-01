@@ -16,15 +16,18 @@ ctx2.fillRect(20, 20, 120, 120);
 
 */
 
-drawFace(ctx2);
+ctx.strokeStyle = "rgb(255,165,0)";
+ctx.lineWidth = 10;
+
+//drawFace(ctx2);
+drawArcTo(ctx2)
 
 
 
 function drawFace(ctx) {
   ctx.save();
   ctx.beginPath();
-  ctx.strokeStyle = "rgb(255,165,0)";
-  ctx.lineWidth = 10;
+  
 
   ctx.arc(75,75,50,0,Math.PI*2,true); // 绘制
   ctx.moveTo(110,75);
@@ -36,6 +39,19 @@ function drawFace(ctx) {
   ctx.stroke();
   ctx.restore();
 
+}
+
+function drawArcTo(ctx) {
+  ctx.save();
+
+  ctx.beginPath();
+
+  ctx.moveTo(50, 50);
+
+  ctx.arcTo(100, 100, 200, 100, 50);
+
+  ctx.stroke();
+  ctx.restore();
 }
 
  
