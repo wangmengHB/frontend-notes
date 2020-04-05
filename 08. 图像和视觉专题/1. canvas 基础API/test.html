@@ -21,6 +21,7 @@ canvas.height = height;
 var ctx = canvas.getContext('2d', { alpha: true});
 
 
+
 // var ctx2 = canvas.getContext('2d', { alpha: false});
 /* ctx2.fillStyle = 'rgba(0, 255, 255, 0.5)';
 ctx2.fillRect(20, 20, 120, 120);
@@ -29,6 +30,10 @@ ctx2.fillRect(20, 20, 120, 120);
 
 ctx.strokeStyle = "rgba(255, 0, 0, 1)";
 ctx.lineWidth = 2;
+
+ctx.beginPath();
+ctx.arc(50, 50, 50, 0, Math.PI * 2, true);
+ctx.clip();
 
 
 ctx.beginPath();
@@ -64,6 +69,21 @@ for (var row = 0; row < height; row++) {
 
 ctx.font = "48px serif";
 ctx.fillText("Hello \n world", 10, 50, 100);
+
+var data1 = ctx.getImageData(0, 0, 10, 10);
+var data2 = ctx.getImageData(0, 0, 10, 10);
+
+console.log(data1 === data2);
+data1.data[0] = 128;
+console.log(data2.data[0]);
+
+
+ctx.beginPath();
+ctx.arc(75, 75, 25, 0, Math.PI * 2, true);
+ ctx.clip();
+
+ctx.fillRect(0, 0, 100, 100);
+
 
 
 
