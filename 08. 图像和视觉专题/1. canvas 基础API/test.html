@@ -2,109 +2,30 @@
 <html>
 <head>
 </head>
-<body>
+<body style="padding: 40px;">
 
-<canvas height="400" width="750">
- <label><input type=checkbox id="showA"/> Show As</label>
- <label><input type=checkbox id="showB"/> Show Bs</label>
-</canvas>
 
-<canvas id="canvas" style="width: 500px; height: 500px; border: 1px solid red;"></canvas>
+
+<div style="width: 200px; height: 200px; overflow: auto;">
+  <canvas 
+  id="c3" width="400" height="400" 
+  style="width: 300px; height: 300px; background: green; border: 2px solid black"
+  >
+  </canvas>
+</div>
 
 <script>
-var canvas = document.getElementById('canvas'); 
-var width = 400;
-var height = 400;
 
-canvas.width = width;
-canvas.height = height;
-var ctx = canvas.getContext('2d', { alpha: true});
+var c3 = document.getElementById('c3');
+var a = c3.getBoundingClientRect();
 
-
-
-// var ctx2 = canvas.getContext('2d', { alpha: false});
-/* ctx2.fillStyle = 'rgba(0, 255, 255, 0.5)';
-ctx2.fillRect(20, 20, 120, 120);
-
-*/
-
-ctx.strokeStyle = "rgba(255, 0, 0, 1)";
-ctx.lineWidth = 2;
-
-ctx.beginPath();
-ctx.arc(50, 50, 50, 0, Math.PI * 2, true);
-ctx.clip();
-
-
-ctx.beginPath();
-ctx.moveTo(0, 0);
-ctx.lineTo(1, 2);
-ctx.stroke();
-
-
-var imageData = ctx.getImageData(0, 0, width, height);
-// ctx.clearRect(0, 0, 4, 4);
-// ctx.putImageData(imageData, 0, 0);
-
-console.log(imageData.data.length / 4);
-
-for (var row = 0; row < height; row++) {
-  let point = [];
-
-  for (var col = 0; col < width; col++) {
-    var index = row * width * 4 + col * 4;
-    point.push(
-      [
-        imageData.data[index], imageData.data[index + 1], imageData.data[index + 2], imageData.data[index + 3]
-      ]
-    );
-  }
-
-  console.log(
-    `第${row}行`,
-    point.map(p => p.join(',')).join(' | ')
-  );
-
-}
-
-ctx.font = "48px serif";
-ctx.fillText("Hello \n world", 10, 50, 100);
-
-var data1 = ctx.getImageData(0, 0, 10, 10);
-var data2 = ctx.getImageData(0, 0, 10, 10);
-
-console.log(data1 === data2);
-data1.data[0] = 128;
-console.log(data2.data[0]);
-
-
-ctx.beginPath();
-ctx.arc(75, 75, 25, 0, Math.PI * 2, true);
- ctx.clip();
-
-ctx.fillRect(0, 0, 100, 100);
+c3.addEventListener('mousedown', (e) => {
+  console.log('client x, y: ', e.clientX, e.clientY);
+})
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//drawFace(ctx2);
-//drawArcTo(ctx2)
-//drawQuadraticCurve(ctx);
-//drawBezierCurve(ctx);
-//drawDemo(ctx);
 
 
 function drawFace(ctx) {
@@ -225,8 +146,6 @@ function drawDemo(ctx) {
  ctx.beginPath();
  ctx.arc(89,102,2,0,Math.PI*2,true);
  ctx.fill();
-
-
 }
 
 function roundedRect(ctx,x,y,width,height,radius){
@@ -301,13 +220,10 @@ function drawCheckbox(context, element, x, y, paint) {
      document.getElementById('showB').checked = !(document.getElementById('showB').checked);
    redraw();
  }
- document.getElementsByTagName('canvas')[0].addEventListener('focus', redraw, true);
- document.getElementsByTagName('canvas')[0].addEventListener('blur', redraw, true);
- document.getElementsByTagName('canvas')[0].addEventListener('change', redraw, true);
- document.getElementsByTagName('canvas')[0].addEventListener('click', processClick, false);
- redraw();
-
  
+ 
+
+
 
 
 
