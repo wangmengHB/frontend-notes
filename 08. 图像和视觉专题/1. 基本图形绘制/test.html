@@ -6,7 +6,7 @@
 
 
 
-<div style="width: 200px; height: 200px; overflow: auto;">
+<div style="width: 400px; height: 400px; overflow: auto;">
   <canvas 
   id="c3" width="400" height="400" 
   style="width: 300px; height: 300px; border: 2px solid black"
@@ -24,29 +24,30 @@ canvas.addEventListener('mousedown', (e) => {
 })
 
 
-var ctx1 = canvas.getContext('2d', { alpha: false});
-var ctx2 = canvas.getContext('2d', { alpha: true});
-console.log(ctx1 === ctx2);
-ctx2.fillStyle = 'red';
-ctx2.fillRect(10, 10, 30, 30);
-
-ctx2.clearRect(0, 0, 400, 400);
-
-ctx2.fillStyle = 'green';
-ctx2.fillRect(10, 10, 30, 30);
+var ctx1 = canvas.getContext('2d');
 
 
+var gradient = ctx1.createLinearGradient(0, 0, 90, 0);
+gradient.addColorStop(0, 'blue');
+gradient.addColorStop(0.3, 'blue');
+gradient.addColorStop(0.3, 'white');
+gradient.addColorStop(0.6, 'white');
+gradient.addColorStop(0.6, 'red');
+gradient.addColorStop(1, 'red');
 
 
+ctx1.strokeStyle = gradient;
+ctx1.lineWidth = 20;
 
-
-
-
+ctx1.strokeRect(0, 0, 90, 90);
 
 
 
- 
- 
+
+
+
+
+
 
 
 
