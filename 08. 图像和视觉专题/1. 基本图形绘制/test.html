@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<body style="padding: 40px;">
+
+
+
+<div style="width: 200px; height: 200px; overflow: auto;">
+  <canvas 
+  id="c3" width="400" height="400" 
+  style="width: 300px; height: 300px; border: 2px solid black"
+  >
+  </canvas>
+</div>
+
+<script>
+
+var canvas = document.getElementById('c3');
+var a = canvas.getBoundingClientRect();
+
+canvas.addEventListener('mousedown', (e) => {
+  console.log('client x, y: ', e.clientX, e.clientY);
+})
+
+
+var ctx1 = canvas.getContext('2d', { alpha: false});
+var ctx2 = canvas.getContext('2d', { alpha: true});
+console.log(ctx1 === ctx2);
+ctx2.fillStyle = 'red';
+ctx2.fillRect(10, 10, 30, 30);
+
+ctx2.clearRect(0, 0, 400, 400);
+
+ctx2.fillStyle = 'green';
+ctx2.fillRect(10, 10, 30, 30);
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
