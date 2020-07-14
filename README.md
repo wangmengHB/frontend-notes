@@ -1,8 +1,38 @@
 # 前端开发笔记 ( always in Progress )
 
 # 前言说明
-本仓库是我个人前端开发笔记总结，内容比较凌乱没有章法，但是会持续更新。  
-观点不一定正确，感兴趣可以看看，不感兴趣请直接无视。  
+本仓库是我个人前端开发笔记和文章总结，目前仓库的内容比较凌乱没有章法，相对完整的文章会在整理完成以后在首页放出链接, 内容会持续更新。    
+
+这个应该会是一个未来十年都在不断更新的项目，这个项目最开始创建于17年，当时是在一个公司内部培训上分享 ES6 的特性和原理，随即就把培训材料创建了一个仓库，方便其他人下载。再后来慢慢地就形成了习惯，把开发过程中遇到的问题总结，都写在了这里，越写越多。当然中间也删掉了很多内容，知识和经验这些东西都是常做常新，对于过去的事物，过几年再回头看看，总会得到新的认知。我理想中的最佳状态就是发自内心地热爱编程，而不是迫于工作，编程本身就是一件很有意思的事情。   
+
+内容观点不一定正确，如有错误欢迎大家指正，期望分享的内容对大家有帮助。   
+
+
+
+
+# 已经整理好的文章集：
+
+
+08. 图像和视觉专题      
+    1. 基本图形绘制       
+        1. [canvas 的核心特性](https://github.com/wangmengHB/frontend-notes/blob/master/08.%20%E5%9B%BE%E5%83%8F%E5%92%8C%E8%A7%86%E8%A7%89%E4%B8%93%E9%A2%98/1.%20%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6/1.%20canvas%20%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7.md)      
+        2. [渐变和 pattern 以及高级画笔原理](https://github.com/wangmengHB/frontend-notes/blob/master/08.%20%E5%9B%BE%E5%83%8F%E5%92%8C%E8%A7%86%E8%A7%89%E4%B8%93%E9%A2%98/1.%20%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6/2.%20%E6%B8%90%E5%8F%98%E5%92%8C%20pattern%20%E4%BB%A5%E5%8F%8A%E9%AB%98%E7%BA%A7%E7%94%BB%E7%AC%94%E5%8E%9F%E7%90%86.md)             
+              
+
+
+12. 编辑器专题        
+    1. 文档 Text Buffer 数据结构      
+        1. [piece table [译]](https://github.com/wangmengHB/frontend-notes/blob/master/12.%20%E7%BC%96%E8%BE%91%E5%99%A8%E4%B8%93%E9%A2%98/1.%20%E6%96%87%E6%A1%A3%20Text%20Buffer%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1.%20piece%20table%20%5B%E8%AF%91%5D.md)      
+                
+        3. [VS Code 中 Text Buffer 的重新实现[译+解读]](https://github.com/wangmengHB/frontend-notes/blob/master/12.%20%E7%BC%96%E8%BE%91%E5%99%A8%E4%B8%93%E9%A2%98/1.%20%E6%96%87%E6%A1%A3%20Text%20Buffer%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/3.%20VS%20Code%20%E4%B8%ADText%20Buffer%20%E7%9A%84%E9%87%8D%E6%96%B0%E5%AE%9E%E7%8E%B0%5B%E8%AF%91%5D.md)        
+
+
+
+
+
+
+
+
 
 # 前端的核心竞争力
 前端是一个内容很杂门槛很低的领域，入门很简单，但要做精深又的确很难。
@@ -22,22 +52,6 @@
 发现开源项目 bug，不要算了，顺手给作者提几个 PR，就非常有机会成为开源项目贡献者。 这件事情其实很简单。（我个人就蹭了一个 OpenCV 的 PR， 被收录）。
 
 
-
-# 已经整理好的文章集：
-
-
-08. 图像和视觉专题      
-    1. 基本图形绘制       
-        1. [canvas 的核心特性](https://github.com/wangmengHB/frontend-notes/blob/master/08.%20%E5%9B%BE%E5%83%8F%E5%92%8C%E8%A7%86%E8%A7%89%E4%B8%93%E9%A2%98/1.%20%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6/1.%20canvas%20%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7.md)      
-        2. [渐变和 pattern 以及高级画笔原理](https://github.com/wangmengHB/frontend-notes/blob/master/08.%20%E5%9B%BE%E5%83%8F%E5%92%8C%E8%A7%86%E8%A7%89%E4%B8%93%E9%A2%98/1.%20%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6/2.%20%E6%B8%90%E5%8F%98%E5%92%8C%20pattern%20%E4%BB%A5%E5%8F%8A%E9%AB%98%E7%BA%A7%E7%94%BB%E7%AC%94%E5%8E%9F%E7%90%86.md)             
-        3. [2D 基本图形]()          
-
-
-12. 编辑器专题        
-    1. 文档 Text Buffer 数据结构      
-        1. [piece table [译]](https://github.com/wangmengHB/frontend-notes/blob/master/12.%20%E7%BC%96%E8%BE%91%E5%99%A8%E4%B8%93%E9%A2%98/1.%20%E6%96%87%E6%A1%A3%20Text%20Buffer%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1.%20piece%20table%20%5B%E8%AF%91%5D.md)      
-        2. [piece table [译]]()         
-        3. [VS Code 中 Text Buffer 的重新实现[译+解读]](https://github.com/wangmengHB/frontend-notes/blob/master/12.%20%E7%BC%96%E8%BE%91%E5%99%A8%E4%B8%93%E9%A2%98/1.%20%E6%96%87%E6%A1%A3%20Text%20Buffer%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/3.%20VS%20Code%20%E4%B8%ADText%20Buffer%20%E7%9A%84%E9%87%8D%E6%96%B0%E5%AE%9E%E7%8E%B0%5B%E8%AF%91%5D.md)        
 
 
 
