@@ -24,10 +24,9 @@ canvas.addEventListener('mousedown', (e) => {
 })
 
 
-var ctx1 = canvas.getContext('2d');
+var ctx = canvas.getContext('2d');
 
-
-var gradient = ctx1.createLinearGradient(0, 0, 90, 0);
+var gradient = ctx.createLinearGradient(0, 0, 90, 0);
 gradient.addColorStop(0, 'blue');
 gradient.addColorStop(0.3, 'blue');
 gradient.addColorStop(0.3, 'white');
@@ -36,15 +35,38 @@ gradient.addColorStop(0.6, 'red');
 gradient.addColorStop(1, 'red');
 
 
-ctx1.strokeStyle = gradient;
-ctx1.lineWidth = 20;
+ctx.strokeStyle = gradient;
+ctx.lineWidth = 20;
 
-ctx1.strokeRect(0, 0, 90, 90);
-
-
+ctx.strokeRect(0, 0, 90, 90);
 
 
 
+ctx.beginPath();
+
+ctx.arc(200, 200, 50, 0, Math.PI * 2, false);
+
+ctx.arc(200, 200, 100, 0, Math.PI * 2, false);
+
+
+
+ctx.fill();
+
+
+
+
+
+
+var canvas = document.createElement('canvas');
+console.log(canvas.width);          // 默认 300  
+var ctx = canvas.getContext('2d');
+ctx.globalAlpha = 0.5;
+ctx.fillStyle = 'red';
+ctx.imageSmoothingEnabled = false;
+ctx.globalCompositeOperation = 'destination-in';
+canvas.width = 300;
+// 1, "#000000", true,  默认的 fillStyle 是黑色
+console.log(ctx.globalAlpha, ctx.fillStyle, ctx.imageSmoothingEnabled, ctx.globalCompositeOperation);   
 
 
 
