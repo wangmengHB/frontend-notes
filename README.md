@@ -16,7 +16,8 @@
 08. 图像和视觉专题      
     1. 基本图形绘制       
         1. [canvas 的核心特性](https://github.com/wangmengHB/frontend-notes/blob/master/08.%20%E5%9B%BE%E5%83%8F%E5%92%8C%E8%A7%86%E8%A7%89%E4%B8%93%E9%A2%98/1.%20%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6/1.%20canvas%20%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7.md)      
-        2. [渐变和 pattern 以及高级画笔原理](https://github.com/wangmengHB/frontend-notes/blob/master/08.%20%E5%9B%BE%E5%83%8F%E5%92%8C%E8%A7%86%E8%A7%89%E4%B8%93%E9%A2%98/1.%20%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6/2.%20%E6%B8%90%E5%8F%98%E5%92%8C%20pattern%20%E4%BB%A5%E5%8F%8A%E9%AB%98%E7%BA%A7%E7%94%BB%E7%AC%94%E5%8E%9F%E7%90%86.md)             
+        2. [渐变和 pattern 以及高级画笔原理](https://github.com/wangmengHB/frontend-notes/blob/master/08.%20%E5%9B%BE%E5%83%8F%E5%92%8C%E8%A7%86%E8%A7%89%E4%B8%93%E9%A2%98/1.%20%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6/2.%20%E6%B8%90%E5%8F%98%E5%92%8C%20pattern%20%E4%BB%A5%E5%8F%8A%E9%AB%98%E7%BA%A7%E7%94%BB%E7%AC%94%E5%8E%9F%E7%90%86.md)     
+        3. [绘制样式和状态](https://github.com/wangmengHB/frontend-notes/blob/master/08.%20%E5%9B%BE%E5%83%8F%E5%92%8C%E8%A7%86%E8%A7%89%E4%B8%93%E9%A2%98/1.%20%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6/3.%20%E7%BB%98%E5%9B%BE%E6%A0%B7%E5%BC%8F%E5%92%8C%E7%8A%B6%E6%80%81.md)        
               
 
 
