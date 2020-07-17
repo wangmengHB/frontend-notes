@@ -6,10 +6,9 @@
 
 
 
-<div style="width: 400px; height: 400px; overflow: auto;">
+<div style="width: 500px; height: 500px; overflow: auto;">
   <canvas 
   id="c3" width="400" height="400" 
-  style="width: 300px; height: 300px; border: 2px solid black"
   >
   </canvas>
 </div>
@@ -18,11 +17,6 @@
 
 var canvas = document.getElementById('c3');
 var a = canvas.getBoundingClientRect();
-
-canvas.addEventListener('mousedown', (e) => {
-  console.log('client x, y: ', e.clientX, e.clientY);
-})
-
 
 var ctx = canvas.getContext('2d');
 
@@ -67,14 +61,98 @@ canvas.width = 300;
 console.log(ctx.globalAlpha, ctx.fillStyle, ctx.imageSmoothingEnabled, ctx.globalCompositeOperation);   
 
 
-
+/*
 var angle = Math.PI /2;
 var scale = 1.3;
-
-//ctx.setTransform(1,0.5, -0.5,1,0,0);
 ctx.setTransform(scale * Math.cos(angle), scale * Math.sin(angle), -scale*Math.sin(angle), scale* Math.cos(angle), 300, 100);
 ctx.fillRect(50,50,100,100);
+*/
 
+var point1 = {
+  x: 30,
+  y: 30,
+};
+
+var point2 = {
+  x: 50,
+  y: 100,
+};
+
+var point3 = {
+  x: 120,
+  y: 50,
+}
+
+ctx.lineWidth = 4;
+ctx.beginPath();
+ctx.moveTo(point1.x, point1.y);
+ctx.arcTo(point2.x,point2.y, point3.x, point3.y, 20);
+ctx.lineTo(point3.x, point3.y);
+ctx.stroke();
+
+ctx.beginPath();
+ctx.fillStyle = 'red';
+ctx.moveTo(point1.x, point1.y);
+ctx.arc(point1.x, point1.y, 30, 0, Math.PI * 3 / 2);
+//ctx.closePath();
+ctx.fill();
+
+ctx.beginPath();
+ctx.fillStyle = 'green';
+ctx.arc(point2.x, point2.y, 10, 0, Math.PI * 2);
+ctx.fill();
+
+ctx.beginPath();
+ctx.fillStyle = 'blue';
+ctx.arc(point3.x, point3.y, 10, 0, Math.PI * 2);
+ctx.fill();
+
+
+
+
+
+
+// Create ellipse
+
+ctx.save();
+ctx.translate(20, 200);
+const ellipse = new Path2D();
+ellipse.ellipse(150, 75, 40, 60, Math.PI * .25, 0, 2 * Math.PI);
+ctx.lineWidth = 25;
+
+ctx.fillStyle = 'rgba(0, 0, 0, 0)';
+ctx.strokeStyle = 'rgba(0, 0, 0, 0)';
+
+ctx.fill(ellipse);
+ctx.stroke(ellipse);
+
+var matrix = ctx.getTransform();
+
+ctx.restore();
+
+
+// Listen for mouse moves
+canvas.addEventListener('mousemove', function(event) {
+  ctx.save();
+
+  ctx.setTransform(matrix);
+
+
+  // Check whether point is inside ellipse's stroke
+  if (ctx.isPointInPath(ellipse, event.offsetX, event.offsetY)) {
+    ctx.strokeStyle = 'green';
+    console.log('is in path');
+  } else {
+    ctx.strokeStyle = 'red';
+  }
+
+  ctx.restore();
+
+  // Draw ellipse
+  // ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // ctx.fill(ellipse);
+  // ctx.stroke(ellipse);
+});
 
 
 
