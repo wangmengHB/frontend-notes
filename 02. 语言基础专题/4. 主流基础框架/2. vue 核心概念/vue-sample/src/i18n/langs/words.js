@@ -1,0 +1,7 @@
+export const USERNAME = 'USERNAME'
+export const PASSWORD = 'PASSWORD'
+export const LOGIN_TITLE = 'LOGIN_TITLE'
+export const LOGIN = 'LOGIN'
+export const SUBMIT = 'SUBMIT'
+export const PASSWORD_CAN_NOT_BE_EMPTY = 'PASSWORD_CAN_NOT_BE_EMPTY'
+export const USERNAME_CAN_NOT_BE_EMPTY = 'USERNAME_CAN_NOT_BE_EMPTY'

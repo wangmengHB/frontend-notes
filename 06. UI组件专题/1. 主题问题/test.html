@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        :root { --text-color: 16px; }
+        p { color: blue; }
+        p { color: var(--text-color); }
+
+
+        .text-color{
+            color: var(--text-color);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="text-color">这是父容器。</div>
+    <p>文字的颜色</p>
+
+
+    <iframe srcdoc="<style>.text-color{color: var(--text-color, blue);}</style><div class='text-color'>这是一个 iframe 里面的内容</div>">
+        
+
+    </iframe>
+    
+</body>
+</html>
