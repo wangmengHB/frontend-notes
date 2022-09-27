@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+
+        .root{
+            border: solid 1px red;
+            padding: 10px;
+        }
+
+        .root1{
+            display: block;
+            flex-wrap: wrap;
+        }
+
+        .child{
+            border: solid 5px green;
+            height: 10px;
+            width: 100%;
+            
+        }
+        .child1{
+            margin: 20px;
+            outline: solid 5px orange;
+        }
+        .child2{
+            margin: 30px;
+            outline: solid 30px orange;
+        }
+
+        .container {
+            /* padding: 10px; */
+            /* border: 1px solid red; */
+            /* overflow: hidden; */ 
+            border-bottom: 10px red hidden;
+        }
+
+        .container::after{
+            content: '   ';
+            font-size: 0;
+        }
+        
+        .container-child {
+            width: 100px;
+            height: 100px;
+            background: lightblue;
+            margin: 100px;
+            outline: solid blue 100px;
+        }
+
+        .container-child::before{
+            content: '123';
+            font-size: 10px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="root root1">
+        <div class="child child1"></div>
+        <div class="child child2"></div> 
+    </div>
+    <div class="root">
+        <div class="child child1">
+            fdkajfldajfkda
+            fdkajfldajfkda
+            fdkajfldajfkda
+            fdkajfldajfkda
+            fdkajfldajfkda
+            fdkajfldajfkda
+            fdkajfldajfkda
+            fdkajfldajfkda
+            fdkajfldajfkda
+            fdkajfldajfkdafdkajfldajfkda
+            fdkajfldajfkda
+            fdkajfldajfkda
+            fdkajfldajfkda
+            fdkajfldajfkda
+        </div>
+        <div class="child child2"></div> 
+    </div>
+    <div class="container">
+        test
+        <p class="container-child"></p>
+    </div>
+    <div class="container">
+        test
+        <p class="container-child"></p>
+    </div>
+    
+
+    
+    
+</body>
+</html>
